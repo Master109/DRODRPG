@@ -19,10 +19,12 @@ public class SkeletonArcher : MonoBehaviour
 	public LayerMask whatIsGround;
 	public LayerMask whatIsNonWalkable;
 	GameObject go;
-
+	Vector3 pLoc;
+	
 	void Start ()
 	{
 		player = GameObject.Find("Player").GetComponent<Player>();
+		pLoc = transform.position;
 	}
 	
 	void Update ()
@@ -133,7 +135,9 @@ public class SkeletonArcher : MonoBehaviour
 					return;
 				}
 			}
-			
+
+			pLoc = transform.position;
+
 			Vector3 idealMoveToPos;
 			if ((!CheckForPlayer (bullet.GetComponent<Bullet>().range) && Vector3.Distance(moveToPos, player.transform.position) < Vector3.Distance(moveToPos2, player.transform.position)) || (CheckForPlayer (bullet.GetComponent<Bullet>().range) && Vector3.Distance(moveToPos, player.transform.position) > Vector3.Distance(moveToPos2, player.transform.position)))
 				idealMoveToPos = moveToPos;
@@ -143,6 +147,9 @@ public class SkeletonArcher : MonoBehaviour
 			if (Physics.Raycast(new Vector3(idealMoveToPos.x, moveDist * 2, idealMoveToPos.z), Vector3.down, moveDist * 2, whatIsGround))
 			{
 				transform.position = idealMoveToPos;
+				Vector3 pToCurrentPos = transform.position - pLoc;
+				transform.rotation = Quaternion.LookRotation(pToCurrentPos);
+				transform.rotation = Quaternion.Euler(90, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 				moveTimer = 0;
 			}
 		}

@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 			else if (Input.GetAxisRaw("Turn") != 0)
 			{
 				moveTime = 0;
-				transform.Rotate(0, Input.GetAxisRaw("Turn") * 45, 0);
+				transform.Rotate(0, 0, -Input.GetAxisRaw("Turn") * 45);
 				Camera.main.transform.rotation = Quaternion.Euler(90, 0, 0);
 			}
 		}

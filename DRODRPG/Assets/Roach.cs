@@ -17,10 +17,12 @@ public class Roach : MonoBehaviour
 	public int damage;
 	public LayerMask whatIsGround;
 	public LayerMask whatIsNonWalkable;
+	Vector3 pLoc;
 
 	void Start ()
 	{
 		player = GameObject.Find("Player").GetComponent<Player>();
+		pLoc = transform.position;
 	}
 	
 	void Update ()
@@ -58,6 +60,8 @@ public class Roach : MonoBehaviour
 			if (transform.position == moveToPos && transform.position == moveToPos2)
 				return;
 
+			pLoc = transform.position;
+
 			Vector3 idealMoveToPos;
 			if (Vector3.Distance(moveToPos, player.transform.position) < Vector3.Distance(moveToPos2, player.transform.position))
 				idealMoveToPos = moveToPos;
@@ -67,6 +71,8 @@ public class Roach : MonoBehaviour
 			if (Physics.Raycast(new Vector3(idealMoveToPos.x, moveDist * 2, idealMoveToPos.z), Vector3.down, moveDist * 2, whatIsGround))
 			{
 				transform.position = idealMoveToPos;
+				Vector3 pToCurrentPos = transform.position - pLoc;
+				transform.rotation = Quaternion.Euler(90, Mathf.Atan2(pToCurrentPos.z, -pToCurrentPos.x) * Mathf.Rad2Deg, 0);
 				moveTimer = 0;
 			}
 		}
