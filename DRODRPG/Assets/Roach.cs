@@ -30,7 +30,8 @@ public class Roach : MonoBehaviour
 		playerSwordPos = GameObject.Find("PlayerSword").transform.position;
 		if (!awake)
 		{
-			CheckForPlayer ();
+			if (CheckForPlayer (awakeRadius))
+				awake = true;
 			return;
 		}
 		attackTimer += Time.deltaTime;
@@ -78,10 +79,10 @@ public class Roach : MonoBehaviour
 		}
 	}
 	
-	void CheckForPlayer ()
+	bool CheckForPlayer (int range)
 	{
 		Vector3 vector = transform.position;
-		for (var i = 0; i < awakeRadius; i ++)
+		for (var i = 0; i < range; i ++)
 		{
 			if (vector.x - player.transform.position.x > 0)
 				vector -= Vector3.right * moveDist;
@@ -92,11 +93,9 @@ public class Roach : MonoBehaviour
 			else if (vector.z - player.transform.position.z < 0)
 				vector += Vector3.forward * moveDist;
 			if (vector == player.transform.position)
-			{
-				awake = true;
-				return;
-			}
+				return true;
 		}
+		return false;
 	}
 
 	void OnTriggerEnter (Collider other)

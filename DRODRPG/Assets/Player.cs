@@ -12,11 +12,17 @@ public class Player : MonoBehaviour
 	public float playerAttackTimer;
 	public float playerAttackRate;
 	public int score;
+	public float moveDelayTime;
+	float moveDelayTimer;
+	int xAxis;
+	int zAxis;
+	int turnAxis;
 
 	// Use this for initialization
 	void Start ()
 	{
-		
+		moveRate -= moveDelayTime;
+		moveDelayTimer = -1;
 	}
 	
 	// Update is called once per frame
@@ -26,31 +32,56 @@ public class Player : MonoBehaviour
 		playerAttackTimer += Time.deltaTime;
 		if (moveTime >= moveRate)
 		{
-			if (Input.GetAxisRaw("X") != 0 && Physics.Raycast(new Ray(transform.position + Vector3.right * Input.GetAxisRaw("X") * moveDist, Vector3.down), moveDist, whatIsGround))
+			if (Input.GetAxisRaw("Turn") != 0)
 			{
+				xAxis = 0;
+				zAxis = 0;
+				turnAxis = (int) Input.GetAxisRaw("Turn");
+				moveDelayTimer = 0;
 				moveTime = 0;
-				transform.Translate(Vector3.right * Input.GetAxisRaw("X") * moveDist, Space.World);
 			}
-			else if (Input.GetAxisRaw("Z") != 0 && Physics.Raycast(new Ray(transform.position + Vector3.forward * Input.GetAxisRaw("Z") * moveDist, Vector3.down), moveDist, whatIsGround))
+			else
 			{
+				turnAxis = 0;
+				xAxis = (int) Input.GetAxisRaw("X");
+				zAxis = (int) Input.GetAxisRaw("Z");
+				moveDelayTimer = 0;
 				moveTime = 0;
-				transform.Translate(Vector3.forward * Input.GetAxisRaw("Z") * moveDist, Space.World);
 			}
-			else if (Input.GetAxisRaw("+X-Z") != 0 && Physics.Raycast(new Ray(transform.position + (Vector3.right * Input.GetAxisRaw("+X-Z") * moveDist) + (Vector3.forward * -Input.GetAxisRaw("+X-Z") * moveDist), Vector3.down), moveDist, whatIsGround))
+		}
+		if (moveDelayTimer >= 0)
+		{
+			moveDelayTimer += Time.deltaTime;
+			if (moveDelayTimer > moveDelayTime)
 			{
-				moveTime = 0;
-				transform.Translate((Vector3.right * Input.GetAxisRaw("+X-Z") * moveDist) + (Vector3.forward * -Input.GetAxisRaw("+X-Z") * moveDist), Space.World);
-			}
-			else if (Input.GetAxisRaw("+X+Z") != 0 && Physics.Raycast(new Ray(transform.position + (Vector3.right * Input.GetAxisRaw("+X+Z") * moveDist) + (Vector3.forward * Input.GetAxisRaw("+X+Z") * moveDist), Vector3.down), moveDist, whatIsGround))
-			{
-				moveTime = 0;
-				transform.Translate((Vector3.right * Input.GetAxisRaw("+X+Z") * moveDist) + (Vector3.forward * Input.GetAxisRaw("+X+Z") * moveDist), Space.World);
-			}
-			else if (Input.GetAxisRaw("Turn") != 0)
-			{
-				moveTime = 0;
-				transform.Rotate(0, 0, -Input.GetAxisRaw("Turn") * 45);
-				Camera.main.transform.rotation = Quaternion.Euler(90, 0, 0);
+				if (turnAxis == 0)
+				{
+					if (xAxis != 0)
+						zAxis = (int) Input.GetAxisRaw("Z");
+					else
+						xAxis = (int) Input.GetAxisRaw("X");
+					if ((xAxis != 0 && zAxis == 0) && Physics.Raycast(new Ray(transform.position + Vector3.right * Input.GetAxisRaw("X") * moveDist, Vector3.down), moveDist, whatIsGround))
+					{
+						moveTime = 0;
+						transform.Translate(Vector3.right * Input.GetAxisRaw("X") * moveDist, Space.World);
+					}
+					else if ((xAxis == 0 && zAxis != 0) && Physics.Raycast(new Ray(transform.position + Vector3.forward * Input.GetAxisRaw("Z") * moveDist, Vector3.down), moveDist, whatIsGround))
+					{
+						moveTime = 0;
+						transform.Translate(Vector3.forward * Input.GetAxisRaw("Z") * moveDist, Space.World);
+					}
+					else if ((xAxis != 0 && zAxis != 0) && Physics.Raycast(new Ray(transform.position + (Vector3.right * Input.GetAxisRaw("X") * moveDist) + (Vector3.forward * Input.GetAxisRaw("Z") * moveDist), Vector3.down), moveDist, whatIsGround))
+					{
+						moveTime = 0;
+						transform.Translate((Vector3.right * Input.GetAxisRaw("X") * moveDist) + (Vector3.forward * Input.GetAxisRaw("Z") * moveDist), Space.World);
+					}
+				}
+				else
+				{
+					transform.Rotate(0, 0, -turnAxis * 45);
+					Camera.main.transform.rotation = Quaternion.Euler(90, 0, 0);
+				}
+				moveDelayTimer = -1;
 			}
 		}
 	}
