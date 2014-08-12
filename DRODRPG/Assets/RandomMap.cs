@@ -13,9 +13,25 @@ public class RandomMap : MonoBehaviour
 	public int mapSizeZ;
 	int gridSpacing = 4;
 	GameObject[,] gos;
+	string message;
 
 	// Use this for initialization
 	void Start ()
+	{
+		StartCoroutine ("MakeMap");
+	}
+	
+	// Update is called once per frame
+	void Update ()
+	{
+		if (message != "")
+		{
+			Debug.Log(message);
+			message = "";
+		}
+	}
+
+	IEnumerator MakeMap ()
 	{
 		gos = new GameObject[mapSizeX, mapSizeZ];
 		for (int x3 = 0; x3 < mapSizeX; x3 ++)
@@ -47,23 +63,11 @@ public class RandomMap : MonoBehaviour
 			{
 				for (int j = 0; j < materials.Length; j ++)
 				{
-					if (gos[(int) pIterationPos.x, (int) pIterationPos.z].renderer.material == materials[j])
-					{
-						if (Random.Range(0, 101) < materialEndChance[j])
-						{
-							SetSpace (x, z, pIterationPos);
-						}
-						else
-						{
-							gos[x, z].renderer.material = materials[j];
-						}
-						break;
-					}
-					else if (gos[(int) pIterationPos.x, (int) pIterationPos.z] == null)
+					if (gos[(int) pIterationPos.x, (int) pIterationPos.z] == null)
 					{
 						if (Random.Range(0, 101) < destroyEndChance)
 						{
-							SetSpace (x, z, pIterationPos);
+							//SetSpace (x, z, pIterationPos);
 						}
 						else
 						{
@@ -71,21 +75,31 @@ public class RandomMap : MonoBehaviour
 						}
 						break;
 					}
+					else if (gos[(int) pIterationPos.x, (int) pIterationPos.z].renderer.material == materials[j])
+					{
+						if (Random.Range(0, 101) < materialEndChance[j])
+						{
+							//SetSpace (x, z, pIterationPos);
+						}
+						else
+						{
+							gos[x, z].renderer.material = materials[j];
+						}
+						break;
+					}
 				}
 			}
 			gos[x, z].tag = "Untagged";
+			if (GameObject.FindGameObjectsWithTag("Other").Length == 0)
+				yield return new WaitForSeconds(1);
 			Vector3 createPos = PickNextSpace (x, z, pIterationPos);
 			pIterationPos = new Vector3(x, 0, z);
 			x = (int) createPos.x;
 			z = (int) createPos.z;
 			i ++;
 		}
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-
+		message = "Finished";
+		yield return new WaitForSeconds(1);
 	}
 
 	void SetSpace (int x, int z, Vector3 pIterationPos)
