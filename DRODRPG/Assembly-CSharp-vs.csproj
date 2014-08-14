@@ -49,13 +49,16 @@
      <Compile Include="Assets\Bullet.cs" />
      <Compile Include="Assets\FlickerLight.cs" />
      <Compile Include="Assets\Player.cs" />
+     <Compile Include="Assets\RandomLights.cs" />
      <Compile Include="Assets\RandomMap.cs" />
+     <Compile Include="Assets\RandomMonsters.cs" />
      <Compile Include="Assets\Roach.cs" />
      <Compile Include="Assets\SkeletonArcher.cs" />
      <Compile Include="Assets\SmoothFollow.cs" />
      <Compile Include="Assets\SnapToGrid.cs" />
      <Compile Include="Assets\Survival.cs" />
      <Compile Include="Assets\UCLAGameLab\Scripts\MeshCreatorData.cs" />
+     <Compile Include="Assets\Vision.cs" />
      <None Include="Assets\UCLAGameLab\Documentation\versions.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

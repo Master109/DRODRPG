@@ -18,6 +18,7 @@ public class Roach : MonoBehaviour
 	public LayerMask whatIsGround;
 	public LayerMask whatIsNonWalkable;
 	Vector3 pLoc;
+	public int gold;
 
 	void Start ()
 	{
@@ -31,7 +32,10 @@ public class Roach : MonoBehaviour
 		if (!awake)
 		{
 			if (CheckForPlayer (awakeRadius))
+			{
 				awake = true;
+				transform.Find ("Vision").GetComponent<Vision>().enabled = false;
+			}
 			return;
 		}
 		attackTimer += Time.deltaTime;
@@ -116,15 +120,19 @@ public class Roach : MonoBehaviour
 			if (player.hp <= 0)
 				Application.LoadLevel(0);
 		}
-		else if (other.gameObject.name == "PlayerSword" && player.playerAttackTimer > player.playerAttackRate)
+		else if (other.name == "PlayerSword" && GameObject.Find("Player").GetComponent<Player>().attackTimer > GameObject.Find("Player").GetComponent<Player>().attackRate && other.transform.position == transform.position)
 		{
-			player.playerAttackTimer = 0;
+			GameObject.Find("Player").GetComponent<Player>().attackTimer = 0;
 			hp -= damage;
 			if (hp <= 0)
 			{
-				player.score += 1;
-				if (player.score > PlayerPrefs.GetInt("Score", 0))
-					PlayerPrefs.SetInt("Score", player.score);
+				GameObject.Find("Player").GetComponent<Player>().score += 1;
+				if (GameObject.Find("Player").GetComponent<Player>().score > PlayerPrefs.GetInt("Score", 0))
+				{
+					if (GameObject.Find("Player").GetComponent<Player>().survival)
+						PlayerPrefs.SetInt("Score", player.score);
+					GameObject.Find("Player").GetComponent<Player>().gold += gold;
+				}
 				Destroy(gameObject);
 			}
 		}

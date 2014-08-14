@@ -20,7 +20,8 @@ public class SkeletonArcher : MonoBehaviour
 	public LayerMask whatIsNonWalkable;
 	GameObject go;
 	Vector3 pLoc;
-	
+	public int gold;
+
 	void Start ()
 	{
 		player = GameObject.Find("Player").GetComponent<Player>();
@@ -33,7 +34,10 @@ public class SkeletonArcher : MonoBehaviour
 		if (!awake)
 		{
 			if (CheckForPlayer (awakeRadius))
+			{
 				awake = true;
+				transform.Find ("Vision").GetComponent<Vision>().enabled = false;
+			}
 			return;
 		}
 		attackTimer += Time.deltaTime;
@@ -185,15 +189,19 @@ public class SkeletonArcher : MonoBehaviour
 
 	void OnTriggerStay (Collider other)
 	{
-		if (other.gameObject.name == "PlayerSword" && player.playerAttackTimer > player.playerAttackRate)
+		if (other.name == "PlayerSword" && GameObject.Find("Player").GetComponent<Player>().attackTimer > GameObject.Find("Player").GetComponent<Player>().attackRate && other.transform.position == transform.position)
 		{
-			player.playerAttackTimer = 0;
+			GameObject.Find("Player").GetComponent<Player>().attackTimer = 0;
 			hp --;
 			if (hp <= 0)
 			{
-				player.score += 1;
-				if (player.score > PlayerPrefs.GetInt("Score", 0))
-					PlayerPrefs.SetInt("Score", player.score);
+				GameObject.Find("Player").GetComponent<Player>().score += 1;
+				if (GameObject.Find("Player").GetComponent<Player>().score > PlayerPrefs.GetInt("Score", 0))
+				{
+					if (GameObject.Find("Player").GetComponent<Player>().survival)
+						PlayerPrefs.SetInt("Score", GameObject.Find("Player").GetComponent<Player>().score);
+					GameObject.Find("Player").GetComponent<Player>().gold += gold;
+				}
 				Destroy(gameObject);
 			}
 		}

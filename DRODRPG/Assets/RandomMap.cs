@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class RandomMap : MonoBehaviour
@@ -20,10 +20,28 @@ public class RandomMap : MonoBehaviour
 	int x2;
 	int z2;
 	bool keepRunning;
-
+	public bool makeMap;
+	int i2;
+	public bool runStart = true;
+	public bool expand;
+	GameObject go;
+	bool expanded;
+	
 	// Use this for initialization
 	void Start ()
 	{
+		if (!runStart)
+			return;
+		gos = new GameObject[mapSizeX, mapSizeZ];
+		gosBottom = new GameObject[mapSizeX, mapSizeZ];
+		for (int x3 = 0; x3 < mapSizeX; x3 ++)
+		{
+			for (int z3 = 0; z3 < mapSizeZ; z3 ++)
+			{
+				gos[x3, z3] = (GameObject) GameObject.Instantiate(cube, new Vector3(x3 * gridSpacing - mapSizeX * 2 + 2, 0, z3 * gridSpacing - mapSizeZ * 2 + 2), Quaternion.identity);
+				gos[x3, z3].tag = "Making";
+			}
+		}
 		StartCoroutine ("MakeMap");
 	}
 	
@@ -35,34 +53,44 @@ public class RandomMap : MonoBehaviour
 			Debug.Log(message);
 			message = "";
 		}
+		if (makeMap || i2 > 10)
+		{
+			makeMap = false;
+			StopAllCoroutines();
+			StartCoroutine ("MakeMap");
+		}
 	}
 	
 	IEnumerator MakeMap ()
 	{
-		gos = new GameObject[mapSizeX, mapSizeZ];
-		gosBottom = new GameObject[mapSizeX, mapSizeZ];
-		for (int x3 = 0; x3 < mapSizeX; x3 ++)
-		{
-			for (int z3 = 0; z3 < mapSizeZ; z3 ++)
-			{
-				gos[x3, z3] = (GameObject) GameObject.Instantiate(cube, new Vector3(x3 * gridSpacing - mapSizeX * 2 + 2 + transform.position.x, 0, z3 * gridSpacing - mapSizeX * 2 + 2 + transform.position.z), Quaternion.identity);
-				gos[x3, z3].tag = "Other";
-			}
-		}
-		for (int x2 = 0; x2 < mapSizeX; x2 ++)
-		{
-			for (int z2 = 0; z2 < mapSizeZ; z2 ++)
-			{
-				gosBottom[x2, z2] = (GameObject) GameObject.Instantiate(cube, new Vector3(x2 * gridSpacing - mapSizeX * 2 + 2 + transform.position.x, -4, z2 * gridSpacing - mapSizeX * 2 + 2 + transform.position.z), Quaternion.identity);
-				gosBottom[x2, z2].renderer.material = null;
-			}
-		}
-		int x = Mathf.RoundToInt(Random.Range(0, mapSizeX));
-		int z = Mathf.RoundToInt(Random.Range(0, mapSizeZ));
+		int r = Mathf.RoundToInt(Random.Range(0, GameObject.FindGameObjectsWithTag("Making").Length));
+		int x = (int) GameObject.FindGameObjectsWithTag("Making")[r].transform.position.x;
+		int z = (int) GameObject.FindGameObjectsWithTag("Making")[r].transform.position.z;
+		Vector3 offset = new Vector3(x / gridSpacing + mapSizeX / 2, 0, z / gridSpacing + mapSizeZ / 2);
+		x = (int) (offset.x + .0f);
+		z = (int) (offset.z + .0f);
 		pIterationPos = new Vector3(x, 0, z);
 		int i = 0;
-		while (GameObject.FindGameObjectsWithTag("Other").Length > 0)
+		i2 = 0;
+		while (GameObject.FindGameObjectsWithTag("Making").Length > 0)
 		{
+			if (expanded)
+			{
+				expanded = false;
+				if (x < 0)
+					x = 0;
+				if (z < 0)
+					z = 0;
+			}
+			while (gos[x, z] == null || gos[x, z].renderer.sharedMaterial != null)
+			{
+				r = Mathf.RoundToInt(Random.Range(0, GameObject.FindGameObjectsWithTag("Making").Length));
+				x = (int) GameObject.FindGameObjectsWithTag("Making")[r].transform.position.x;
+				z = (int) GameObject.FindGameObjectsWithTag("Making")[r].transform.position.z;
+				offset = new Vector3(x / gridSpacing + mapSizeX / 2, 0, z / gridSpacing + mapSizeZ / 2);
+				x = (int) (offset.x + .0f);
+				z = (int) (offset.z + .0f);
+			}
 			if (i == 0)
 			{
 				SetSpace (x, z, pIterationPos);
@@ -74,11 +102,10 @@ public class RandomMap : MonoBehaviour
 					if (gos[(int) pIterationPos.x, (int) pIterationPos.z] == null)
 					{
 						if (Random.Range(0, 101) < destroyEndChance)
-						{
 							SetSpace (x, z, pIterationPos);
-						}
 						else
 						{
+							message = "Destroyed space: " + i2;
 							Destroy(gos[x, z]);
 						}
 						break;
@@ -86,49 +113,62 @@ public class RandomMap : MonoBehaviour
 					else if (gos[(int) pIterationPos.x, (int) pIterationPos.z].renderer.sharedMaterial == materials[j])
 					{
 						if (Random.Range(0, 101) < materialEndChance[j])
-						{
 							SetSpace (x, z, pIterationPos);
-						}
 						else
 						{
-							if (gos[x, z] != null)
-								gos[x, z].renderer.material = materials[j];
-							else
-							{
-								while (gos[x, z] == null || gos[x, z].tag == "Untagged")
-								{
-									x = Mathf.RoundToInt(Random.Range(0, mapSizeX));
-									z = Mathf.RoundToInt(Random.Range(0, mapSizeZ));
-								}
-							}
+							message = "Painted space: " + i2;
+							gos[x, z].renderer.sharedMaterial = materials[j];
 						}
 						break;
 					}
 				}
 			}
-			if (gos[x, z] != null)
-			{
-				gos[x, z].tag = "Untagged";
-				Destroy(gosBottom[x, z]);
-			}
-			if (GameObject.FindGameObjectsWithTag("Other").Length == 0)
-				StopCoroutine("MakeMap");
+			gos[x, z].tag = "Finished";
 			x2 = x;
 			z2 = z;
 			keepRunning = false;
-			StartCoroutine("PickNextSpace");
-			while (!keepRunning)
-			{
-				yield return new WaitForSeconds(0f);
-			}
+			PickNextSpace ();
 			pIterationPos = new Vector3(x, 0, z);
 			x = x2;
 			z = z2;
 			i ++;
-			message = "" + i;
+			i2 ++;
 			yield return new WaitForSeconds(0f);
 		}
-		yield return new WaitForSeconds(0f);
+		Debug.Log ("FINISHED");
+		for (int x3 = 0; x3 < mapSizeX; x3 ++)
+		{
+			for (int z3 = 0; z3 < mapSizeZ; z3 ++)
+			{
+				if (gos[x3, z3] == null)
+					gosBottom[x3, z3] = (GameObject) GameObject.Instantiate(cube, new Vector3(x3 * gridSpacing - mapSizeX * 2 + 2, -4, z3 * gridSpacing - mapSizeZ * 2 + 2), Quaternion.identity);
+			}
+		}
+	}
+	
+	void ExpandMap ()
+	{
+		mapSizeX += 2;
+		mapSizeZ += 2;
+		GameObject[,] gosCopy = gos;
+		gos = new GameObject[mapSizeX, mapSizeZ];
+		for (int x3 = 0; x3 < mapSizeX; x3 ++)
+			for (int z3 = 0; z3 < mapSizeZ; z3 += mapSizeZ - 1)
+			{
+				go = (GameObject) GameObject.Instantiate(cube, new Vector3(x3 * gridSpacing - mapSizeX * 2 + 2, 0, z3 * gridSpacing - mapSizeZ * 2 + 2), Quaternion.identity);
+				go.tag = "Making";
+			}
+		for (int x3 = 0; x3 < mapSizeX; x3 += mapSizeX - 1)
+			for (int z3 = 1; z3 < mapSizeZ - 1; z3 ++)
+			{
+				go = (GameObject) GameObject.Instantiate(cube, new Vector3(x3 * gridSpacing - mapSizeX * 2 + 2, 0, z3 * gridSpacing - mapSizeZ * 2 + 2), Quaternion.identity);
+				go.tag = "Making";
+			}
+		for (int x3 = 0; x3 < mapSizeX - 2; x3 ++)
+			for (int z3 = 0; z3 < mapSizeZ - 2; z3 ++)
+				gos[x3 + 1, z3 + 1] = gosCopy[x3, z3];
+		expanded = true;
+		//yield return new WaitForSeconds(.0f);
 	}
 	
 	void SetSpace (int x, int z, Vector3 pIterationPos)
@@ -136,34 +176,43 @@ public class RandomMap : MonoBehaviour
 		float r2 = Random.Range(0, 3);
 		if (Random.Range(0, 101) < destroyStartChance)
 		{
-			Destroy(gos[x, z]);
+			
 		}
 		else
 		{
-			while (gos[x, z].renderer.sharedMaterial == null)
+			while (true)
 			{
 				int r = Mathf.RoundToInt(Random.Range(0, materials.Length));
 				if (Random.Range(0, 101) < materialStartChance[r])
 				{
-					gos[x, z].renderer.material = materials[r];
+					message = "Painted space: " + i2;
+					gos[x, z].renderer.sharedMaterial = materials[r];
 					return;
 				}
 			}
 		}
+		message = "Destroyed space: " + i2;
+		Destroy(gos[x, z]);
 	}
 	
-	IEnumerator PickNextSpace ()
+	void PickNextSpace ()
 	{
-		bool shouldBreak = false;
 		ArrayList gos2 = new ArrayList();
+		bool keepRunning2 = false;
+		bool b = false;
 		for (int i = 0; i <= 8; i ++)
 		{
-			bool keepRunning2 = false;
-			bool b = false;
 			while (x2 >= mapSizeX || z2 >= mapSizeZ || x2 < 0 || z2 < 0 || new Vector3(x2, 0, z2) == pIterationPos || !keepRunning2)
 			{
 				x2 = (int) pIterationPos.x + Mathf.RoundToInt(Random.Range(-1, 2));
 				z2 = (int) pIterationPos.z + Mathf.RoundToInt(Random.Range(-1, 2));
+				if (expand && (x2 >= mapSizeX - 0 || z2 >= mapSizeZ - 0 || x2 < 0 || z2 < 0))
+				{
+					//StartCoroutine("ExpandMap");
+					ExpandMap ();
+					createLoc = new Vector3(x2, 0, z2);
+					return;
+				}
 				foreach (GameObject g in gos2)
 				{
 					if (g.transform.position == new Vector3(x2, 0, z2))
@@ -174,39 +223,27 @@ public class RandomMap : MonoBehaviour
 				}
 				if (!b)
 					keepRunning2 = true;
-				//yield return new WaitForSeconds(.5f);
 			}
-			if (gos[x2, z2] != null)
+			if (gos[x2, z2] != null && gos[x2, z2].tag == "Finished")
 			{
-				if (gos[x2, z2].tag == "Untagged")
+				if (!gos2.Contains(gos[x2, z2]))
 				{
-					if (!gos2.Contains(gos[x2, z2]))
+					gos2.Add(gos[x2, z2]);
+					if (gos2.Count == 8)
 					{
-						gos2.Add(gos[x2, z2]);
-						if (gos2.Count == 8)
-						{
-							x2 = Mathf.RoundToInt(Random.Range(0, mapSizeX));
-							z2 = Mathf.RoundToInt(Random.Range(0, mapSizeZ));
-							message = "Finished iteration";
-							//yield return new WaitForSeconds(.5f);
-							createLoc = new Vector3(x2, 0, z2);
-							shouldBreak = true;
-						}
+						int r = Mathf.RoundToInt(Random.Range(0, GameObject.FindGameObjectsWithTag("Making").Length));
+						x2 = (int) GameObject.FindGameObjectsWithTag("Making")[r].transform.position.x;
+						z2 = (int) GameObject.FindGameObjectsWithTag("Making")[r].transform.position.z;
+						Vector3 offset = new Vector3(x2 / gridSpacing + mapSizeX / 2, 0, z2 / gridSpacing + mapSizeZ / 2);
+						x2 = (int) (offset.x + .0f);
+						z2 = (int) (offset.z + .0f);
+						createLoc = new Vector3(x2, 0, z2);
+						return;
 					}
 				}
-				else
-				{
-					createLoc = new Vector3(x2, 0, z2);
-					shouldBreak = true;
-				}
 			}
-			if (shouldBreak)
-				break;
-			message = "Finished iteration tier 2";
-			//yield return new WaitForSeconds(.5f);
+			else
+				createLoc = new Vector3(x2, 0, z2);
 		}
-		keepRunning = true;
-		yield return new WaitForSeconds(.5f);
 	}
 }
- 

@@ -9,14 +9,16 @@ public class Player : MonoBehaviour
 	int moveDist = 4;
 	public LayerMask whatIsGround;
 	public int hp;
-	public float playerAttackTimer;
-	public float playerAttackRate;
+	public float attackTimer;
+	public float attackRate;
 	public int score;
 	public float moveDelayTime;
 	float moveDelayTimer;
 	int xAxis;
 	int zAxis;
 	int turnAxis;
+	public int gold;
+	public bool survival;
 
 	// Use this for initialization
 	void Start ()
@@ -29,7 +31,7 @@ public class Player : MonoBehaviour
 	void Update ()
 	{
 		moveTime += Time.deltaTime;
-		playerAttackTimer += Time.deltaTime;
+		attackTimer += Time.deltaTime;
 		if (moveTime >= moveRate)
 		{
 			if (Input.GetAxisRaw("Turn") != 0)
@@ -89,7 +91,10 @@ public class Player : MonoBehaviour
 	void OnGUI ()
 	{
 		GUI.Label(new Rect(0, 0, Screen.width, 50), "Health: " + hp);
-		GUI.Label (new Rect (0, 10, Screen.width, 50), "Best score: " + PlayerPrefs.GetInt("Score", 0));
-		GUI.Label(new Rect(0, 20, Screen.width, 50), "Score: " + score);
+		if (survival)
+		{
+			GUI.Label (new Rect (0, 10, Screen.width, 50), "Best score: " + PlayerPrefs.GetInt("Score", 0));
+			GUI.Label(new Rect(0, 20, Screen.width, 50), "Score: " + score);
+		}
 	}
 }
