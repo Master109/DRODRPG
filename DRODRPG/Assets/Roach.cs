@@ -9,7 +9,7 @@ public class Roach : MonoBehaviour
 	public float moveRate;
 	float attackTimer;
 	public float attackRate;
-	bool awake;
+	public bool awake;
 	public int awakeRadius;
 	RaycastHit hit;
 	Player player;
@@ -120,7 +120,7 @@ public class Roach : MonoBehaviour
 			if (player.hp <= 0)
 				Application.LoadLevel(0);
 		}
-		else if (other.name == "PlayerSword" && GameObject.Find("Player").GetComponent<Player>().attackTimer > GameObject.Find("Player").GetComponent<Player>().attackRate && other.transform.position == transform.position)
+		else if (other.name == "PlayerSword" && GameObject.Find("Player").GetComponent<Player>().attackTimer > GameObject.Find("Player").GetComponent<Player>().attackRate && other.transform.position.normalized * Mathf.Round(other.transform.position.magnitude) == transform.position.normalized * Mathf.Round(transform.position.magnitude))
 		{
 			GameObject.Find("Player").GetComponent<Player>().attackTimer = 0;
 			hp -= damage;
@@ -131,8 +131,8 @@ public class Roach : MonoBehaviour
 				{
 					if (GameObject.Find("Player").GetComponent<Player>().survival)
 						PlayerPrefs.SetInt("Score", player.score);
-					GameObject.Find("Player").GetComponent<Player>().gold += gold;
 				}
+				GameObject.Find("Player").GetComponent<Player>().gold += gold;
 				Destroy(gameObject);
 			}
 		}

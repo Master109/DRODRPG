@@ -26,7 +26,10 @@ public class RandomMap : MonoBehaviour
 	public bool expand;
 	GameObject go;
 	bool expanded;
-	
+	public GameObject beacon;
+	public bool makeBeacons;
+	bool runOnce = true;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -53,11 +56,16 @@ public class RandomMap : MonoBehaviour
 			Debug.Log(message);
 			message = "";
 		}
-		if (makeMap || i2 > 10)
+		if (makeMap)
 		{
 			makeMap = false;
 			StopAllCoroutines();
 			StartCoroutine ("MakeMap");
+		}
+		if (makeBeacons)
+		{
+			makeBeacons = false;
+			MakeBeacons ();
 		}
 	}
 	
@@ -71,17 +79,8 @@ public class RandomMap : MonoBehaviour
 		z = (int) (offset.z + .0f);
 		pIterationPos = new Vector3(x, 0, z);
 		int i = 0;
-		i2 = 0;
 		while (GameObject.FindGameObjectsWithTag("Making").Length > 0)
 		{
-			if (expanded)
-			{
-				expanded = false;
-				if (x < 0)
-					x = 0;
-				if (z < 0)
-					z = 0;
-			}
 			while (gos[x, z] == null || gos[x, z].renderer.sharedMaterial != null)
 			{
 				r = Mathf.RoundToInt(Random.Range(0, GameObject.FindGameObjectsWithTag("Making").Length));
@@ -127,7 +126,16 @@ public class RandomMap : MonoBehaviour
 			x2 = x;
 			z2 = z;
 			keepRunning = false;
-			PickNextSpace ();
+
+			//PickNextSpace ();
+			keepRunning = false;
+			StartCoroutine("PickNextSpace");
+			while (!keepRunning)
+			{
+				message = "Waiting";
+				yield return new WaitForSeconds(.0f);
+			}
+
 			pIterationPos = new Vector3(x, 0, z);
 			x = x2;
 			z = z2;
@@ -142,6 +150,18 @@ public class RandomMap : MonoBehaviour
 			{
 				if (gos[x3, z3] == null)
 					gosBottom[x3, z3] = (GameObject) GameObject.Instantiate(cube, new Vector3(x3 * gridSpacing - mapSizeX * 2 + 2, -4, z3 * gridSpacing - mapSizeZ * 2 + 2), Quaternion.identity);
+			}
+		}
+		MakeBeacons ();
+	}
+
+	void MakeBeacons ()
+	{
+		for (int x3 = (0) * gridSpacing - mapSizeX * 2 - 2; x3 < (mapSizeX) * gridSpacing - mapSizeX * 2 - 2; x3 += 100)
+		{
+			for (int z3 = (0) * gridSpacing - mapSizeZ * 2 - 2; z3 < (mapSizeZ) * gridSpacing - mapSizeZ * 2 - 2; z3 += 100)
+			{
+				go = (GameObject) GameObject.Instantiate(beacon, new Vector3(x3, beacon.transform.position.y, z3), Quaternion.identity);
 			}
 		}
 	}
@@ -168,6 +188,7 @@ public class RandomMap : MonoBehaviour
 			for (int z3 = 0; z3 < mapSizeZ - 2; z3 ++)
 				gos[x3 + 1, z3 + 1] = gosCopy[x3, z3];
 		expanded = true;
+		runOnce = false;
 		//yield return new WaitForSeconds(.0f);
 	}
 	
@@ -195,8 +216,9 @@ public class RandomMap : MonoBehaviour
 		Destroy(gos[x, z]);
 	}
 	
-	void PickNextSpace ()
+	IEnumerator PickNextSpace ()
 	{
+		bool shouldBreak = false;
 		ArrayList gos2 = new ArrayList();
 		bool keepRunning2 = false;
 		bool b = false;
@@ -206,12 +228,12 @@ public class RandomMap : MonoBehaviour
 			{
 				x2 = (int) pIterationPos.x + Mathf.RoundToInt(Random.Range(-1, 2));
 				z2 = (int) pIterationPos.z + Mathf.RoundToInt(Random.Range(-1, 2));
-				if (expand && (x2 >= mapSizeX - 0 || z2 >= mapSizeZ - 0 || x2 < 0 || z2 < 0))
+				if (expand && runOnce && (x2 >= mapSizeX - 0 || z2 >= mapSizeZ - 0 || x2 < 0 || z2 < 0))
 				{
 					//StartCoroutine("ExpandMap");
 					ExpandMap ();
 					createLoc = new Vector3(x2, 0, z2);
-					return;
+					//break;
 				}
 				foreach (GameObject g in gos2)
 				{
@@ -223,6 +245,14 @@ public class RandomMap : MonoBehaviour
 				}
 				if (!b)
 					keepRunning2 = true;
+			}
+			if (expanded)
+			{
+				expanded = false;
+				if (x2 < 0)
+					x2 = 0;
+				if (z2 < 0)
+					z2 = 0;
 			}
 			if (gos[x2, z2] != null && gos[x2, z2].tag == "Finished")
 			{
@@ -238,12 +268,17 @@ public class RandomMap : MonoBehaviour
 						x2 = (int) (offset.x + .0f);
 						z2 = (int) (offset.z + .0f);
 						createLoc = new Vector3(x2, 0, z2);
-						return;
+						shouldBreak = true;
+						break;
 					}
 				}
 			}
 			else
 				createLoc = new Vector3(x2, 0, z2);
+			if (shouldBreak)
+				break;
 		}
+		keepRunning = true;
+		yield return new WaitForSeconds(.0f);
 	}
 }

@@ -10,7 +10,7 @@ public class SkeletonArcher : MonoBehaviour
 	float attackTimer;
 	public float attackRate;
 	public GameObject bullet;
-	bool awake;
+	public bool awake;
 	public int awakeRadius;
 	RaycastHit hit;
 	Player player;

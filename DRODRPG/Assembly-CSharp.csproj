@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Beacon.cs" />
      <Compile Include="Assets\Bullet.cs" />
      <Compile Include="Assets\FlickerLight.cs" />
      <Compile Include="Assets\Player.cs" />
