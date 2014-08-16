@@ -1,0 +1,57 @@
+41
+Move your body
+What would life be without movement?! Let's learn how to move! Move by using the keys: WASD
+!_@~~@_!
+What would life be without movement?! Let's learn how to move! Move by using the keys: WASD
+!_@~~@_!
+What would life be without movement?! Let's learn how to move! Move by using the keys: WASD
+!_@~~@_!
+StartedQuest
+
+1
+player
+CreateQuestPoint
+false
+1
+"QuestPoint1"
+StartQuest
+true
+2
+[
+Go to "!"
+!_@~~@_!
+
+!_@~~@_!
+
+1
+false
+ReachedPoint
+ObjectiveComplete1
+
+1
+player
+StartDialog
+false
+1
+"Dialog0"
+
+]
+[
+Go off map edge
+!_@~~@_!
+
+!_@~~@_!
+
+1
+false
+TriggeredBeacon
+QuestComplete1
+
+1
+player
+StartDialog
+false
+1
+"Dialog1"
+ReadyForObjective2
+]

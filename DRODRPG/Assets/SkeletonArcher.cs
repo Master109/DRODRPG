@@ -30,6 +30,8 @@ public class SkeletonArcher : MonoBehaviour
 	
 	void Update ()
 	{
+		if (GameObject.Find("Scripts").GetComponent<Global>().timeScale2 == 0)
+			return;
 		playerSwordPos = GameObject.Find("PlayerSword").transform.position;
 		if (!awake)
 		{
@@ -40,7 +42,7 @@ public class SkeletonArcher : MonoBehaviour
 			}
 			return;
 		}
-		attackTimer += Time.deltaTime;
+		attackTimer += Time.deltaTime * GameObject.Find("Scripts").GetComponent<Global>().timeScale2;
 		Vector3 toPlayer = player.transform.position - transform.position;
 		bool inLineWithPlayer = (Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1);
 		bool canFire = inLineWithPlayer && CheckForPlayer (bullet.GetComponent<Bullet>().range);
@@ -53,7 +55,7 @@ public class SkeletonArcher : MonoBehaviour
 			//go.GetComponent<Bullet>().damage = damage;
 		}
 
-		moveTimer += Time.deltaTime;
+		moveTimer += Time.deltaTime * GameObject.Find("Scripts").GetComponent<Global>().timeScale2;
 		if (moveTimer > moveRate && !canFire)
 		{
 			Vector3 moveToPos = transform.position;
@@ -77,7 +79,7 @@ public class SkeletonArcher : MonoBehaviour
 					return;
 				}
 			}
-			if (transform.position.z - player.transform.position.z > 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			if (transform.position.z - player.transform.position.z > 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsGround))
 			{
 				moveToPos -= Vector3.forward * moveDist;
 				if ((Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1))
@@ -87,7 +89,7 @@ public class SkeletonArcher : MonoBehaviour
 					return;
 				}
 			}
-			else if (transform.position.z - player.transform.position.z < 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2, moveToPos.z + moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2, moveToPos.x + moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			else if (transform.position.z - player.transform.position.z < 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z + moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.x + moveDist), Vector3.down, moveDist * 2, whatIsGround))
 			{
 				moveToPos += Vector3.forward * moveDist;
 				if ((Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1))
@@ -183,25 +185,41 @@ public class SkeletonArcher : MonoBehaviour
 		if (other.tag == "Bullet" && other.GetComponent<Bullet>().shooter != gameObject)
 		{
 			hp -= other.GetComponent<Bullet>().damage;
+			if (hp <= 0)
+			{
+				player.score += 1;
+				if (player.score > PlayerPrefs.GetInt("Score", 0))
+				{
+					if (player.survival)
+						PlayerPrefs.SetInt("Score", player.score);
+				}
+				player.gold += gold;
+				Destroy(gameObject);
+			}
 			Destroy(other.gameObject);
 		}
 	}
 
 	void OnTriggerStay (Collider other)
 	{
-		if (other.name == "PlayerSword" && GameObject.Find("Player").GetComponent<Player>().attackTimer > GameObject.Find("Player").GetComponent<Player>().attackRate && other.transform.position == transform.position)
+		if (other.name == "PlayerSword" && player.attackTimer > player.attackRate && other.transform.position == transform.position)
 		{
-			GameObject.Find("Player").GetComponent<Player>().attackTimer = 0;
+			player.attackTimer = 0;
 			hp --;
 			if (hp <= 0)
 			{
-				GameObject.Find("Player").GetComponent<Player>().score += 1;
-				if (GameObject.Find("Player").GetComponent<Player>().score > PlayerPrefs.GetInt("Score", 0))
+				player.score += 1;
+				if (player.score > PlayerPrefs.GetInt("Score", 0))
 				{
-					if (GameObject.Find("Player").GetComponent<Player>().survival)
-						PlayerPrefs.SetInt("Score", GameObject.Find("Player").GetComponent<Player>().score);
-					GameObject.Find("Player").GetComponent<Player>().gold += gold;
+					if (player.survival)
+						PlayerPrefs.SetInt("Score", player.score);
 				}
+				player.kills ++;
+				if (player.kills == 1)
+				{
+					Parley.GetInstance().TriggerQuestEvent("EnemyKilled");
+				}
+				player.gold += gold;
 				Destroy(gameObject);
 			}
 		}

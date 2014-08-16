@@ -46,20 +46,56 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Editor\ParleyEditor.cs" />
      <Compile Include="Assets\UCLAGameLab\Editor\MeshCreator.cs" />
      <Compile Include="Assets\UCLAGameLab\Editor\MeshCreatorInspector.cs" />
      <Compile Include="Assets\UCLAGameLab\Editor\MeshCreatorUndoManager.cs" />
      <Compile Include="Assets\UCLAGameLab\Editor\MeshCreatorWizard.cs" />
      <Compile Include="Assets\UCLAGameLab\Editor\SimpleSurfaceEdge.cs" />
      <Compile Include="Assets\UCLAGameLab\Editor\Triangulator.cs" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Parley\DROD\Tutorial\ply.Go to city.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Find your mom.txt" />
+     <None Include="Assets\Plugins\Parley Assets\Editor\Dictionary\english\english.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Pick Some Wildflowers.txt" />
+     <None Include="Assets\Parley\DROD\Tutorial\qst.Kill an enemy.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Larry.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\ply.Bath.txt" />
+     <None Include="Assets\Parley\DROD\Tutorial\ply.Movement.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.AndDarryl.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\qst.Breakfast.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Woodsman.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Find Out Skills.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Wolf.txt" />
+     <None Include="Assets\Parley\DROD\Tutorial\ply.Killing.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\ply.Breakfast Table.txt" />
      <None Include="Assets\UCLAGameLab\Documentation\versions.txt" />
+     <None Include="Assets\Parley\DROD\Tutorial\qst.Erigdor.txt" />
+     <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Darryl.txt" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Parley\DROD\Tutorial\qst.Move your body.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Defeat The Wolf.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Mom.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\qst.Cleanup.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\ply.Mom.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Chirps.txt" />
+     <None Include="Assets\Parley\DROD\Tutorial\ply.Movement2.txt" />
+     <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\qst.Bathtime.txt" />
+     <None Include="Assets\Parley\DROD\Tutorial\ply.Erigdor.txt" />
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{90E5C115-5824-E6EF-9C4C-1D4684045986}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{24057D04-D4F1-DA05-17FC-40D908E068E4}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{18AF9D7E-F7AB-77D8-2DA6-6F4E087A0897}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript.unityproj">
+      <Project>{E9EFE374-4ED1-96E4-1DBB-D043B150D244}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

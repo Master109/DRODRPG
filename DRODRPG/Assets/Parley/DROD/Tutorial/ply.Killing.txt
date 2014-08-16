@@ -1,0 +1,44 @@
+1
+[
+0
+52
+-1
+
+Great! You have revealed a new area! Oh no... baddies! Now, are you ready for murdering?
+!_@~~@_!
+
+!_@~~@_!
+true
+false
+ReadyToKill
+2
+player
+SayByeFalse
+false
+0
+player
+MessageAfterQuestAccept
+false
+1
+"Bye"
+QuestComplete1
+
+true
+2
+[
+Yay! I love killing!
+!_@~~@_!
+46
+
+true
+true
+]
+[
+B-b-but I'm a coward....
+!_@~~@_!
+46
+
+true
+true
+]
+]

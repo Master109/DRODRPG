@@ -1,0 +1,33 @@
+47
+Kill an enemy
+It is finally time to kill, young padawon. Move your sword onto the same space as an enemy and they will die! Hold the left and right arrow keys to rotate your sword.
+!_@~~@_!
+It is finally time to kill, young padawon. Move your sword onto the same space as an enemy and they will die! Hold the left and right arrow keys to rotate your sword.
+!_@~~@_!
+It is finally time to kill, young padawon. Move your sword onto the same space as an enemy and they will die! Hold the left and right arrow keys to rotate your sword.
+!_@~~@_!
+
+
+0
+ReadyToKill
+false
+1
+[
+Kill an enemy!!!
+!_@~~@_!
+
+!_@~~@_!
+
+1
+false
+EnemyKilled
+
+
+1
+player
+StartDialog
+false
+1
+"Dialog2"
+
+]

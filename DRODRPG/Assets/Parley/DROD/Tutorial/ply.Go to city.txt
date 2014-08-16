@@ -1,0 +1,36 @@
+1
+[
+0
+68
+-1
+
+Ok! The tutorial is over! You are two button-presses away from starting your journey!
+!_@~~@_!
+
+!_@~~@_!
+true
+false
+ReadyForQuest3
+2
+player
+ExitAreaTrue
+false
+0
+player
+CreateQuestPoint
+false
+1
+"QuestPoint2"
+EnemyKilled
+
+true
+1
+[
+Let's do this!
+!_@~~@_!
+69
+
+true
+true
+]
+]

@@ -28,6 +28,8 @@ public class Roach : MonoBehaviour
 	
 	void Update ()
 	{
+		if (GameObject.Find("Scripts").GetComponent<Global>().timeScale2 == 0)
+			return;
 		playerSwordPos = GameObject.Find("PlayerSword").transform.position;
 		if (!awake)
 		{
@@ -38,8 +40,8 @@ public class Roach : MonoBehaviour
 			}
 			return;
 		}
-		attackTimer += Time.deltaTime;
-		moveTimer += Time.deltaTime;
+		attackTimer += Time.deltaTime * GameObject.Find("Scripts").GetComponent<Global>().timeScale2;
+		moveTimer += Time.deltaTime * GameObject.Find("Scripts").GetComponent<Global>().timeScale2;
 		if (moveTimer > moveRate)
 		{
 			Vector3 moveToPos = transform.position;
@@ -47,9 +49,9 @@ public class Roach : MonoBehaviour
 				moveToPos -= Vector3.right * moveDist;
 			else if (transform.position.x - player.transform.position.x < 0 && !Physics.Raycast(new Vector3(moveToPos.x + moveDist, moveDist * 2, moveToPos.z), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x + moveDist, moveDist * 2, moveToPos.z), Vector3.down, moveDist * 2, whatIsGround))
 				moveToPos += Vector3.right * moveDist;
-			if (transform.position.z - player.transform.position.z > 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			if (transform.position.z - player.transform.position.z > 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsGround))
 				moveToPos -= Vector3.forward * moveDist;
-			else if (transform.position.z - player.transform.position.z < 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2, moveToPos.z + moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2, moveToPos.x + moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			else if (transform.position.z - player.transform.position.z < 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z + moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.x + moveDist), Vector3.down, moveDist * 2, whatIsGround))
 				moveToPos += Vector3.forward * moveDist;
 
 			Vector3 moveToPos2 = transform.position;
@@ -107,6 +109,17 @@ public class Roach : MonoBehaviour
 		if (other.tag == "Bullet")
 		{
 			hp -= other.GetComponent<Bullet>().damage;
+			if (hp <= 0)
+			{
+				player.score += 1;
+				if (player.score > PlayerPrefs.GetInt("Score", 0))
+				{
+					if (player.survival)
+						PlayerPrefs.SetInt("Score", player.score);
+				}
+				player.gold += gold;
+				Destroy(gameObject);
+			}
 			Destroy(other.gameObject);
 		}
 	}
@@ -120,19 +133,24 @@ public class Roach : MonoBehaviour
 			if (player.hp <= 0)
 				Application.LoadLevel(0);
 		}
-		else if (other.name == "PlayerSword" && GameObject.Find("Player").GetComponent<Player>().attackTimer > GameObject.Find("Player").GetComponent<Player>().attackRate && other.transform.position.normalized * Mathf.Round(other.transform.position.magnitude) == transform.position.normalized * Mathf.Round(transform.position.magnitude))
+		else if (other.name == "PlayerSword" && player.attackTimer > player.attackRate && other.transform.position.normalized * Mathf.Round(other.transform.position.magnitude) == transform.position.normalized * Mathf.Round(transform.position.magnitude))
 		{
-			GameObject.Find("Player").GetComponent<Player>().attackTimer = 0;
+			player.attackTimer = 0;
 			hp -= damage;
 			if (hp <= 0)
 			{
-				GameObject.Find("Player").GetComponent<Player>().score += 1;
-				if (GameObject.Find("Player").GetComponent<Player>().score > PlayerPrefs.GetInt("Score", 0))
+				player.score += 1;
+				if (player.score > PlayerPrefs.GetInt("Score", 0))
 				{
-					if (GameObject.Find("Player").GetComponent<Player>().survival)
+					if (player.survival)
 						PlayerPrefs.SetInt("Score", player.score);
 				}
-				GameObject.Find("Player").GetComponent<Player>().gold += gold;
+				player.kills ++;
+				if (player.kills == 1)
+				{
+					Parley.GetInstance().TriggerQuestEvent("EnemyKilled");
+				}
+				player.gold += gold;
 				Destroy(gameObject);
 			}
 		}
