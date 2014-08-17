@@ -48,11 +48,9 @@
   <ItemGroup>
      <Compile Include="Assets\Plugins\Parley Assets\Editor\ParleyMenu.cs" />
      <Compile Include="Assets\Plugins\Parley Assets\Gui\TestGui.cs" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
-     <Compile Include="Assets\Standard Assets\Water (Basic)\Sources\Scripts\WaterSimple.cs" />
-     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Go to city.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Find your mom.txt" />
+     <None Include="Assets\Resources\LibNoise.Unity\COPYING.txt" />
      <None Include="Assets\Plugins\Parley Assets\Editor\Dictionary\english\english.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Pick Some Wildflowers.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\qst.Kill an enemy.txt" />
@@ -63,22 +61,23 @@
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\qst.Breakfast.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Woodsman.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Find Out Skills.txt" />
+     <None Include="Assets\shaderdata.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Wolf.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Killing.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\ply.Breakfast Table.txt" />
      <None Include="Assets\UCLAGameLab\Documentation\versions.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\qst.Erigdor.txt" />
-     <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Darryl.txt" />
-     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\qst.Move your body.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Defeat The Wolf.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Mom.txt" />
+     <None Include="Assets\Resources\LibNoise.Unity\COPYING.LESSER.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\qst.Cleanup.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\ply.Mom.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Chirps.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Movement2.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\qst.Bathtime.txt" />
+     <None Include="Assets\Parley\DROD\Tutorial\qst.Journey to Erigdor.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Erigdor.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

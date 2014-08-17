@@ -69,7 +69,7 @@ public class DialogGuiBasic : DialogGuiAbstract {
 				conversationTextStartSec=Time.time;
 	  		}
     	}else{
-			if (GameObject.Find("Player").GetComponent<Player>().canSayBye && GUILayout.Button("Bye.")) {
+			if (GameObject.Find("Player").GetComponent<Player>().canSayBye && GUILayout.Button("Bye")) {
 				GameObject.Find("Scripts").GetComponent<Global>().timeScale2 = 1;
   				EndDialog();
 	  		}

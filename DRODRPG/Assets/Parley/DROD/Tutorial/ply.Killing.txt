@@ -28,7 +28,7 @@ true
 [
 Yay! I love killing!
 !_@~~@_!
-46
+47
 
 true
 true
@@ -36,7 +36,7 @@ true
 [
 B-b-but I'm a coward....
 !_@~~@_!
-46
+47
 
 true
 true

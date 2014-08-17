@@ -1,8 +1,8 @@
-4
+6
 [
 0
 73
--1
+0
 
 Erigdor is a medium sized city, inhabited by many people. A lot of them are proud that the city has been standing as long as they could remember. Unlike most cities, the atmosphere is one where people don't talk much to others, many of them hard at work with their high-paying jobs. On the other hand, the crime rate is slightly high compared to most cities, due to a lack of many law-enforcers.
 !_@~~@_!
@@ -34,7 +34,7 @@ true
 75
 -1
 
-Quests
+Quests for "Erigdor"
 !_@~~@_!
 
 !_@~~@_!
@@ -68,7 +68,7 @@ true
 77
 -1
 
-Objectives
+Objectives for "Journey to Ergidor"
 !_@~~@_!
 
 !_@~~@_!
@@ -81,17 +81,17 @@ false
 true
 2
 [
-Back
+Meet king
 !_@~~@_!
-1
+3
 
 false
 true
 ]
 [
-Meet king
+Back
 !_@~~@_!
-3
+1
 
 false
 true
@@ -100,6 +100,66 @@ true
 [
 3
 78
+3
+
+After telling the guards at the gate that you have important news to tell the king a guard escorts you into the castle. The castle's interior signaled that it was not a luxury palace. It was not overly spacious and there were minimal decorations. Soon after, you were inside the throne room, which looked fittingly more imperial than the rest of the castle. You walk up to the king and say...
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+
+1
+player
+SayByeFalse
+false
+0
+
+
+true
+2
+[
+Your majesty, I bring important news
+!_@~~@_!
+5
+
+false
+true
+]
+[
+What's up dog? I have some news for you!
+!_@~~@_!
+4
+
+false
+true
+]
+]
+[
+4
+81
+-1
+
+".... Ha!" The king starts to wheeze with laughter. After he finishes, he says, "What is it boy?" You tell him that your village was destroyed and your parents were murdered. His face turns serious. It looks like he is thinking carefully about what nice thing to say. Then he starts laughing again. After he finishes, a long time later, he says, "I feel awfully sorry for you... because you will be my royal fool!"
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+
+1
+player
+GameOver
+false
+0
+
+
+true
+0
+]
+[
+5
+82
 -1
 
 
@@ -113,13 +173,5 @@ false
 
 
 true
-1
-[
-Back
-!_@~~@_!
-2
-
-false
-true
-]
+0
 ]

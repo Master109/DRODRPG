@@ -10,7 +10,7 @@ It is finally time to kill, young padawon. Move your sword onto the same space a
 
 0
 ReadyToKill
-false
+true
 1
 [
 Kill an enemy!!!

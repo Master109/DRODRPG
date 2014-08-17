@@ -75,7 +75,7 @@ public class QuestGuiBasic : QuestGuiAbstract {
 		  	}
     	}
     	
-		if (GUILayout.Button("Bye.")) {
+		if (GUILayout.Button("Bye")) {
 			CloseQuestDialog();
   		}
 	}
