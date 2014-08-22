@@ -11,9 +11,13 @@ Erigdor is a medium sized city, inhabited by many people. A lot of them are prou
 false
 false
 
-1
+2
 player
 SayByeTrue
+false
+0
+player
+Save
 false
 0
 AtErigdor

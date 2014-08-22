@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{18AF9D7E-F7AB-77D8-2DA6-6F4E087A0897}</ProjectGuid>
+	<ProjectGuid>{1D4FE520-94B8-C52B-42A1-D5378D6EC26D}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -76,49 +76,6 @@
      <Compile Include="Assets\RandomLights.cs" />
      <Compile Include="Assets\RandomMap.cs" />
      <Compile Include="Assets\RandomMonsters.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\Billow.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\BrownianMotion.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\Checker.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\Const.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\Cylinders.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\HeterogeneousMultiFractal.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\HybridMulti.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\Perlin.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\RiggedMultifractal.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\Spheres.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Generator\Voronoi.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Gradient.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\ModuleBase.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Noise2D.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Abs.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Add.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Blend.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Cache.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Clamp.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Curve.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Displace.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Exponent.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Invert.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Max.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Min.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Multiply.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Power.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Rotate.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Scale.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\ScaleBias.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Select.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Subtract.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\TEWarp.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Terrace.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Translate.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\Turbulence.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Operator\WindexWarp.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Properties\AssemblyInfo.cs" />
-     <Compile Include="Assets\Resources\LibNoise.Unity\Utils.cs" />
-     <Compile Include="Assets\Resources\TerEdge\teFunc.cs" />
-     <Compile Include="Assets\Resources\TerEdge\teMap.cs" />
-     <Compile Include="Assets\Resources\TerEdge\teShaders.cs" />
-     <Compile Include="Assets\Resources\TerEdge\teUI.cs" />
      <Compile Include="Assets\Roach.cs" />
      <Compile Include="Assets\SaveLoadGui.cs" />
      <Compile Include="Assets\SaveLoadTransform.cs" />
@@ -137,10 +94,34 @@
      <Compile Include="Assets\StreamUnpacker.cs" />
      <Compile Include="Assets\Survival.cs" />
      <Compile Include="Assets\UCLAGameLab\Scripts\MeshCreatorData.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\AddSomeForce.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\AdditionalData.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\AdditionalDataStorage.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\ArrayOfPrefabs.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\CentreAndPointMe.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\ChangeColor.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\ColorMe.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\CreateChildSphere.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\CreateTexture.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\DeleteComponent.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\DeletedComponent.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\IsDeserializing.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\KeepAReference.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\OpenDoor.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\RenameObject.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\SaveAndLoad.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\SaveAndLoadToServer.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\SaveAndReload.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\ScaleObject.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\SwitchMesh.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\TestCoroutines.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\TestJSON.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\TestLoading.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\TestSerialization.cs" />
+     <Compile Include="Assets\UnitySerializer\Scripts\VariablesToSave.cs" />
      <Compile Include="Assets\Vision.cs" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Go to city.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Find your mom.txt" />
-     <None Include="Assets\Resources\LibNoise.Unity\COPYING.txt" />
      <None Include="Assets\Plugins\Parley Assets\Editor\Dictionary\english\english.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Pick Some Wildflowers.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\qst.Kill an enemy.txt" />
@@ -156,23 +137,23 @@
      <None Include="Assets\Parley\DROD\Tutorial\ply.Killing.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\ply.Breakfast Table.txt" />
      <None Include="Assets\UCLAGameLab\Documentation\versions.txt" />
-     <None Include="Assets\Parley\DROD\Tutorial\qst.Erigdor.txt" />
+     <None Include="Assets\Plugins\whydoidoit.com\license.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Darryl.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\qst.Move your body.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Defeat The Wolf.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Mom.txt" />
-     <None Include="Assets\Resources\LibNoise.Unity\COPYING.LESSER.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\qst.Cleanup.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\ply.Mom.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Chirps.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Movement2.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\qst.Bathtime.txt" />
+     <None Include="Assets\UnitySerializer\readme.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\qst.Journey to Erigdor.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Erigdor.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{90E5C115-5824-E6EF-9C4C-1D4684045986}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{31FAE022-01B9-FC3B-01E5-15407574458A}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

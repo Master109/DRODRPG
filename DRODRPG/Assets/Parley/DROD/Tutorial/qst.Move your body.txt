@@ -1,10 +1,14 @@
 41
 Move your body
 What would life be without movement?! Let's learn how to move! Move by using the keys: WASD
+
+
+
+- Go to "!"
 !_@~~@_!
-What would life be without movement?! Let's learn how to move! Move by using the keys: WASD
+
 !_@~~@_!
-What would life be without movement?! Let's learn how to move! Move by using the keys: WASD
+
 !_@~~@_!
 StartedQuest
 

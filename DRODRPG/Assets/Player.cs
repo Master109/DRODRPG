@@ -27,13 +27,21 @@ public class Player : MonoBehaviour
 	public bool canChangeSayBye = true;
 	public bool canChangeExitArea = true;
 	public string messageAfterQuestAccept = "";
+	public bool restart;
 
 	// Use this for initialization
 	void Start ()
 	{
+		if (restart)
+			PlayerPrefs.DeleteAll();
 		GameObject.Find ("InitialSpace").GetComponent<Dialog>().TriggerDialog();
 		moveRate -= moveDelayTime;
 		moveDelayTimer = -1;
+		if (PlayerPrefs.GetInt("Playing", 1) == 0 && PlayerPrefs.GetInt("Saved", 0) == 1)
+		{
+			PlayerPrefs.SetInt("Playing", 1);
+			Load ();
+		}
 	}
 	
 	// Update is called once per frame
@@ -169,6 +177,26 @@ public class Player : MonoBehaviour
 		messageAfterQuestAccept = message;
 	}
 
+	public void Save ()
+	{
+		LevelSerializer.SerializeLevelToFile("DROD RPG Savefile.txt");
+		//gameObject.StartExtendedCoroutine(SaveGameManager.Instance.GetComponent<TestSerialization>().Save ());
+		PlayerPrefs.SetInt("Saved", 1);
+	}
+
+	public void Load ()
+	{
+		LevelSerializer.LoadSavedLevelFromFile("DROD RPG Savefile.txt");
+		//gameObject.StartExtendedCoroutine(SaveGameManager.Instance.GetComponent<TestSerialization>().Load ());
+	}
+
+	void OnApplicationQuit ()
+	{
+		PlayerPrefs.SetInt("Playing", 0);
+		if (restart)
+			PlayerPrefs.DeleteAll();
+	}
+	
 	void OnGUI ()
 	{
 		GUI.Label(new Rect(0, 0, Screen.width, 50), "Health: " + hp);

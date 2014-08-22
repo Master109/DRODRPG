@@ -1,10 +1,15 @@
 70
 Journey to Erigdor
 Before you started that horrible tutorial, your character's village was attacked by a humongous army. You are the only escapee and you are traveling to the nearest city, Erigdor to warn the king and start a new life. You don't have a map, but you know Erigdor is almost exactly north of your current location.
+
+
+
+- Go north to Erigdor
+- Warn king
 !_@~~@_!
-Before you started that horrible tutorial, your character's village was attacked by a humongous army. You are the only escapee and you are traveling to the nearest city, Erigdor to warn the king and start a new life. You don't have a map, but you know Erigdor is almost exactly north of your current location.
+
 !_@~~@_!
-Before you started that horrible tutorial, your character's village was attacked by a humongous army. You are the only escapee and you are traveling to the nearest city, Erigdor to warn the king and start a new life. You don't have a map, but you know Erigdor is almost exactly north of your current location.
+
 !_@~~@_!
 
 
@@ -13,7 +18,7 @@ ReadyForQuest3
 true
 2
 [
-Go to Erigdor
+Go north to Erigdor
 !_@~~@_!
 
 !_@~~@_!
@@ -32,7 +37,7 @@ false
 
 ]
 [
-Meet king
+Warn king
 !_@~~@_!
 
 !_@~~@_!

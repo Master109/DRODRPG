@@ -1,12 +1,13 @@
-using UnityEngine;
-using System.IO;
-using System.Collections.Generic;
+//using UnityEngine;
+//using System.IO;
+//using System.Collections.Generic;
 
 /**
  * This script facilitates save and load of a Parley Scene.
  * 
  * This is included as part of the Full Version of Parley and not the free edition.
  */
+/*
 public class ParleySaveLoad {
 	public static void Save(Stream outputStream){
 		StreamPacker sp=new StreamPacker(outputStream);
@@ -162,3 +163,4 @@ public class ParleySaveLoad {
 	}
 
 }
+*/

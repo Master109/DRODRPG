@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{FC574661-E80D-FB28-1669-8A4F16268E1D}</ProjectGuid>
+	<ProjectGuid>{A5472766-6DBD-A29E-26DF-6CBBF437FF6D}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -55,7 +55,6 @@
      <Compile Include="Assets\UCLAGameLab\Editor\Triangulator.cs" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Go to city.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Find your mom.txt" />
-     <None Include="Assets\Resources\LibNoise.Unity\COPYING.txt" />
      <None Include="Assets\Plugins\Parley Assets\Editor\Dictionary\english\english.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Pick Some Wildflowers.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\qst.Kill an enemy.txt" />
@@ -71,17 +70,17 @@
      <None Include="Assets\Parley\DROD\Tutorial\ply.Killing.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\ply.Breakfast Table.txt" />
      <None Include="Assets\UCLAGameLab\Documentation\versions.txt" />
-     <None Include="Assets\Parley\DROD\Tutorial\qst.Erigdor.txt" />
+     <None Include="Assets\Plugins\whydoidoit.com\license.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Darryl.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\qst.Move your body.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Defeat The Wolf.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Mom.txt" />
-     <None Include="Assets\Resources\LibNoise.Unity\COPYING.LESSER.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\qst.Cleanup.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\ply.Mom.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\ply.Chirps.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Movement2.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\02 Moms Quests\qst.Bathtime.txt" />
+     <None Include="Assets\UnitySerializer\readme.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\qst.Journey to Erigdor.txt" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Erigdor.txt" />
  <Reference Include="UnityEditor.Graphs">
@@ -90,11 +89,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{90E5C115-5824-E6EF-9C4C-1D4684045986}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{31FAE022-01B9-FC3B-01E5-15407574458A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{18AF9D7E-F7AB-77D8-2DA6-6F4E087A0897}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{1D4FE520-94B8-C52B-42A1-D5378D6EC26D}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript.unityproj">
-      <Project>{E9EFE374-4ED1-96E4-1DBB-D043B150D244}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
+      <Project>{9EDD21E5-BFB4-7907-E1CA-5D07EC06805E}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
+      <Project>{CC8E12DD-0620-0EAB-8ED0-C7030E7B01A4}</Project>      <Name>Assembly-CSharp-Editor-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

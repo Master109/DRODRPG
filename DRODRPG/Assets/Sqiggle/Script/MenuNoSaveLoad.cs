@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿/*
+using UnityEngine;
 using System.Collections;
 
 public class MenuNoSaveLoad : MonoBehaviour {
@@ -41,6 +42,7 @@ public class MenuNoSaveLoad : MonoBehaviour {
 				}
 			}
 		}*/
+/*
 	}
 	
 	private void HideMenu(){
@@ -75,7 +77,7 @@ public class MenuNoSaveLoad : MonoBehaviour {
 	//	return usedSlots[gamenumber];
 	//}
 	
-	public void OnGUI(){
+/*	public void OnGUI(){
 		if (!showMenu){
 			return;
 		}
@@ -223,4 +225,4 @@ public class MenuNoSaveLoad : MonoBehaviour {
 		
 		fs.Close();
 	}*/
-}
+//}

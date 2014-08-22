@@ -1,3 +1,4 @@
+/*
 using UnityEditor;
 using UnityEngine;
 using System;
@@ -272,7 +273,7 @@ public class ParleyMenu {
 		
 		return quests;
 	}
-
+//	*/
 
 	/*
 	// Add Quests to a GameObject
@@ -339,4 +340,4 @@ public class ParleyMenu {
 		return scenes;
 	}*/
 
-}
+//}
