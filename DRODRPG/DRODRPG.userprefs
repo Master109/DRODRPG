@@ -1,10 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\QuestGuiBasic.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Plugins\Roach.cs">
     <Files>
-      <File FileName="Assets\RandomMap.cs" Line="85" Column="124" />
-      <File FileName="Assets\Player.cs" Line="27" Column="19" />
-      <File FileName="Assets\QuestGuiBasic.cs" Line="78" Column="36" />
+      <File FileName="Assets\Plugins\Player.cs" Line="226" Column="58" />
+      <File FileName="Assets\Plugins\whydoidoit.com\Serialization\LevelSerializer.cs" Line="252" Column="2" />
+      <File FileName="Assets\Plugins\Survival.cs" Line="40" Column="6" />
+      <File FileName="Assets\Plugins\SkeletonArcher.cs" Line="41" Column="7" />
+      <File FileName="Assets\Plugins\Roach.cs" Line="136" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -14,13 +14,15 @@ true
 2
 [
 Go to 1807 Kalo Street in Erigdor
+--OR--
+Report thieves to guard in Erigdor
 !_@~~@_!
 
 !_@~~@_!
 
 1
 false
-AtHouse
+AtHouseOrReport
 
 
 0
@@ -28,6 +30,8 @@ AtHouse
 ]
 [
 Find the man's valuables
+--OR--
+Report thieves to guard in Erigdor
 !_@~~@_!
 
 !_@~~@_!

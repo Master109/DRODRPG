@@ -1,4 +1,4 @@
-15
+16
 [
 0
 73
@@ -217,7 +217,7 @@ true
 85
 -1
 
-GAME OVER
+
 !_@~~@_!
 
 !_@~~@_!
@@ -319,7 +319,12 @@ New quests
 false
 false
 
-0
+1
+player
+AddCombinedQuestEventListener
+false
+1
+""
 !HasNoNewErigdorQuests
 
 true
@@ -372,7 +377,7 @@ true
 97
 -1
 
-At an inn in Erigdor you meet a guy that says to you, "Hey, I'm Brewmond. What's your name?" You tell him, and then he says, "Ah, <name>, I like the sound of that. I not well acquainted with the ancient language Alnágr, but doesn't that mean anything in it?"
+At an inn in Erigdor you meet a guy that says to you, "Hey, I'm Bremond. What's your name?" You tell him, and then he says, "Ah, <name>, I like the sound of that. I not well acquainted with the ancient language Alnágr, but doesn't that mean anything in it?"
 !_@~~@_!
 
 !_@~~@_!
@@ -530,8 +535,58 @@ false
 false
 
 0
+HeardOfHouse,!FinishedQuestA_framed_man
+
+true
+1
+[
+Go to 1807 Kalo Street
+!_@~~@_!
+15
+
+false
+true
+]
+]
+[
+15
+104
+15
+
+You stand infront of a big house. All the windows are closed and you can't see through. There are many people walking down the street.
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+
+0
 
 
 true
-0
+3
+[
+Knock on the front door
+!_@~~@_!
+-1
+
+false
+true
+]
+[
+Break down the front door
+!_@~~@_!
+-1
+
+false
+true
+]
+[
+Find a way to sneak in {Need lvl 5 Perception and lvl 45 Stealth}
+!_@~~@_!
+-1
+
+false
+true
+]
 ]

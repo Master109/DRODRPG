@@ -46,42 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Beacon.cs" />
-     <Compile Include="Assets\Bullet.cs" />
-     <Compile Include="Assets\CameraSwitch.cs" />
-     <Compile Include="Assets\CollectItems.cs" />
-     <Compile Include="Assets\Command.cs" />
-     <Compile Include="Assets\Conversation.cs" />
-     <Compile Include="Assets\Dialog.cs" />
-     <Compile Include="Assets\DialogGuiAbstract.cs" />
-     <Compile Include="Assets\DialogGuiBasic.cs" />
-     <Compile Include="Assets\DialogGuiSmall.cs" />
-     <Compile Include="Assets\FlickerLight.cs" />
-     <Compile Include="Assets\Global.cs" />
-     <Compile Include="Assets\Objective.cs" />
-     <Compile Include="Assets\Option.cs" />
-     <Compile Include="Assets\PackUnpackable.cs" />
-     <Compile Include="Assets\PackUnpackableBehaviour.cs" />
-     <Compile Include="Assets\Parley.cs" />
-     <Compile Include="Assets\ParleyEnviromentInfo.cs" />
-     <Compile Include="Assets\ParleyEnviromentInfoCombiner.cs" />
-     <Compile Include="Assets\ParleySaveLoad.cs" />
-     <Compile Include="Assets\Player.cs" />
-     <Compile Include="Assets\Quest.cs" />
-     <Compile Include="Assets\QuestChangedListener.cs" />
-     <Compile Include="Assets\QuestGuiAbstract.cs" />
-     <Compile Include="Assets\QuestGuiBasic.cs" />
-     <Compile Include="Assets\QuestObjectSpin.cs" />
-     <Compile Include="Assets\QuestPoint.cs" />
-     <Compile Include="Assets\RandomLights.cs" />
-     <Compile Include="Assets\RandomMap.cs" />
-     <Compile Include="Assets\RandomMonsters.cs" />
-     <Compile Include="Assets\Roach.cs" />
-     <Compile Include="Assets\SaveLoadGui.cs" />
-     <Compile Include="Assets\SaveLoadTransform.cs" />
-     <Compile Include="Assets\SkeletonArcher.cs" />
-     <Compile Include="Assets\SmoothFollow.cs" />
-     <Compile Include="Assets\SnapToGrid.cs" />
      <Compile Include="Assets\Sqiggle\Script\BridgeBump.cs" />
      <Compile Include="Assets\Sqiggle\Script\CoinRotate.cs" />
      <Compile Include="Assets\Sqiggle\Script\IggScript.cs" />
@@ -90,9 +54,6 @@
      <Compile Include="Assets\Sqiggle\Script\MouseLook.cs" />
      <Compile Include="Assets\Sqiggle\Script\WolfControl.cs" />
      <Compile Include="Assets\Sqiggle\Script\WolfLoadSave.cs" />
-     <Compile Include="Assets\StreamPacker.cs" />
-     <Compile Include="Assets\StreamUnpacker.cs" />
-     <Compile Include="Assets\Survival.cs" />
      <Compile Include="Assets\UCLAGameLab\Scripts\MeshCreatorData.cs" />
      <Compile Include="Assets\UnitySerializer\Scripts\AddSomeForce.cs" />
      <Compile Include="Assets\UnitySerializer\Scripts\AdditionalData.cs" />
@@ -119,7 +80,6 @@
      <Compile Include="Assets\UnitySerializer\Scripts\TestLoading.cs" />
      <Compile Include="Assets\UnitySerializer\Scripts\TestSerialization.cs" />
      <Compile Include="Assets\UnitySerializer\Scripts\VariablesToSave.cs" />
-     <Compile Include="Assets\Vision.cs" />
      <None Include="Assets\Parley\DROD\Tutorial\ply.Go to city.txt" />
      <None Include="Assets\Parley\01 Iggs Big Adventure\01 Introduction\qst.Find your mom.txt" />
      <None Include="Assets\Plugins\Parley Assets\Editor\Dictionary\english\english.txt" />
