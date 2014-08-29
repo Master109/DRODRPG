@@ -8,9 +8,9 @@ Welcome to Utrea: a large, mostly unexplored world full with islands of breathta
 !_@~~@_!
 
 !_@~~@_!
-true
 false
-StartQuest
+false
+StartQuestMove_your_body
 4
 player
 SayByeFalse

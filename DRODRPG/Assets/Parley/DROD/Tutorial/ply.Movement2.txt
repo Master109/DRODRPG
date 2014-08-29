@@ -8,7 +8,7 @@ Nice job! Now you are able to walk off the top edge of the map! Try it and you w
 !_@~~@_!
 
 !_@~~@_!
-true
+false
 false
 ReadyForObjective2
 2
@@ -17,10 +17,10 @@ SayByeTrue
 false
 0
 player
-ObjectToDefaultLayer
+SetObjectLayer
 false
 1
-"Beacon1"
+"Beacon1,Default"
 ObjectiveComplete1
 
 true

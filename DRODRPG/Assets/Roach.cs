@@ -45,23 +45,23 @@ public class Roach : MonoBehaviour
 		if (moveTimer > moveRate)
 		{
 			Vector3 moveToPos = transform.position;
-			if (transform.position.x - player.transform.position.x > 0 && !Physics.Raycast(new Vector3(moveToPos.x - moveDist, moveDist * 2, moveToPos.z), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x - moveDist, moveDist * 2, moveToPos.z), Vector3.down, moveDist * 2, whatIsGround))
+			if (transform.position.x - player.transform.position.x > 0)
 				moveToPos -= Vector3.right * moveDist;
-			else if (transform.position.x - player.transform.position.x < 0 && !Physics.Raycast(new Vector3(moveToPos.x + moveDist, moveDist * 2, moveToPos.z), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x + moveDist, moveDist * 2, moveToPos.z), Vector3.down, moveDist * 2, whatIsGround))
+			else if (transform.position.x - player.transform.position.x < 0)
 				moveToPos += Vector3.right * moveDist;
-			if (transform.position.z - player.transform.position.z > 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			if (transform.position.z - player.transform.position.z > 0)
 				moveToPos -= Vector3.forward * moveDist;
-			else if (transform.position.z - player.transform.position.z < 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z + moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.x + moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			else if (transform.position.z - player.transform.position.z < 0)
 				moveToPos += Vector3.forward * moveDist;
 
 			Vector3 moveToPos2 = transform.position;
-			if (transform.position.z - player.transform.position.z > 0 && !Physics.Raycast(new Vector3(moveToPos2.x, moveDist * 2, moveToPos2.z - moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos2.x, moveDist * 2, moveToPos2.z - moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			if (transform.position.z - player.transform.position.z > 0)
 				moveToPos2 -= Vector3.forward * moveDist;
-			else if (transform.position.z - player.transform.position.z < 0 && !Physics.Raycast(new Vector3(moveToPos2.x, moveDist * 2, moveToPos2.z + moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos2.x, moveDist * 2, moveToPos2.x + moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			else if (transform.position.z - player.transform.position.z < 0)
 				moveToPos2 += Vector3.forward * moveDist;
-			if (transform.position.x - player.transform.position.x > 0 && !Physics.Raycast(new Vector3(moveToPos2.x - moveDist, moveDist * 2, moveToPos2.z), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos2.x - moveDist, moveDist * 2, moveToPos2.z), Vector3.down, moveDist * 2, whatIsGround))
+			if (transform.position.x - player.transform.position.x > 0)
 				moveToPos2 -= Vector3.right * moveDist;
-			else if (transform.position.x - player.transform.position.x < 0 && !Physics.Raycast(new Vector3(moveToPos2.x + moveDist, moveDist * 2, moveToPos2.z), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos2.x + moveDist, moveDist * 2, moveToPos2.z), Vector3.down, moveDist * 2, whatIsGround))
+			else if (transform.position.x - player.transform.position.x < 0)
 				moveToPos2 += Vector3.right * moveDist;
 
 			if (transform.position == moveToPos && transform.position == moveToPos2)
@@ -75,7 +75,7 @@ public class Roach : MonoBehaviour
 			else
 				idealMoveToPos = moveToPos2;
 
-			if (Physics.Raycast(new Vector3(idealMoveToPos.x, moveDist * 2, idealMoveToPos.z), Vector3.down, moveDist * 2, whatIsGround))
+			if (Physics.Raycast(new Vector3(idealMoveToPos.x, moveDist * 2, idealMoveToPos.z), Vector3.down, moveDist * 2, whatIsGround) && !Physics.Raycast(new Vector3(idealMoveToPos.x, moveDist * 2, idealMoveToPos.z), Vector3.down, moveDist * 2, whatIsNonWalkable))
 			{
 				transform.position = idealMoveToPos;
 				Vector3 pToCurrentPos = transform.position - pLoc;
@@ -131,7 +131,12 @@ public class Roach : MonoBehaviour
 			attackTimer = 0;
 			player.hp --;
 			if (player.hp <= 0)
-				Application.LoadLevel(0);
+			{
+				if (PlayerPrefs.GetInt("Saved", 0) == 1)
+					player.Load ();
+				else
+					Application.LoadLevel(0);
+			}
 		}
 		else if (other.name == "PlayerSword" && player.attackTimer > player.attackRate && other.transform.position.normalized * Mathf.Round(other.transform.position.magnitude) == transform.position.normalized * Mathf.Round(transform.position.magnitude))
 		{

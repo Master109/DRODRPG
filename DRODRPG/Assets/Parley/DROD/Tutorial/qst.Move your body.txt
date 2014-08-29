@@ -18,7 +18,7 @@ CreateQuestPoint
 false
 1
 "QuestPoint1"
-StartQuest
+StartQuestMove_your_body
 true
 2
 [

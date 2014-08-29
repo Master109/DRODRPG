@@ -1,0 +1,42 @@
+102
+A framed man
+"Ok, so I'm just going to flat out tell you that I used to be a thief. It was awhile back that I stole things; about a year. Recently, however, three members of the group of thieves I worked for came into my house and stole many extremely important valuables. I noticed them before they left, and they noticed me, so they showed me a dagger I never saw before with blood on it and my name and address edged into it. They told me that if I snitched on them to get my valuables back they would give the knife to the kings's guards." The man tells you what valuables he lost, thanks you for listening, and then orders another beer.
+!_@~~@_!
+
+!_@~~@_!
+
+!_@~~@_!
+HeardOfHouse
+
+0
+StartQuestA_framed_man
+true
+2
+[
+Go to 1807 Kalo Street in Erigdor
+!_@~~@_!
+
+!_@~~@_!
+
+1
+false
+AtHouse
+
+
+0
+
+]
+[
+Find the man's valuables
+!_@~~@_!
+
+!_@~~@_!
+
+1
+false
+
+
+
+0
+
+]

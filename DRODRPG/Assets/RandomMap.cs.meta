@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: 51ad179de060841d28fc4f6f5d42df98
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cube: {fileID: 100000, guid: 05f0e1fcc90964ddeb2080a1114b2e45, type: 2}
+  - beacon: {fileID: 100000, guid: c418420e0a019ac47a532d85b2865064, type: 2}
+  - mountains: {fileID: 2100000, guid: 42e26e838cb21e944aa7de2aae4edefc, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

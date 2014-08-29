@@ -8,9 +8,9 @@ Great! You have revealed a new area! Oh no... baddies! Now, are you ready for mu
 !_@~~@_!
 
 !_@~~@_!
-true
 false
-ReadyToKill
+false
+StartQuestKill_an_enemy
 2
 player
 SayByeFalse

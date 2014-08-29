@@ -1,4 +1,3 @@
-/*
 using UnityEditor;
 using UnityEngine;
 using System;
@@ -71,7 +70,7 @@ public class ParleyMenu {
 			Debug.Log(k+"="+settings[k]);
 		}
 		
-		File.WriteAllLines(GetConfigFile(),values);
+		//File.WriteAllLines(GetConfigFile(),values);
 	}
 	
 	private static void LoadConfig(){
@@ -111,7 +110,7 @@ public class ParleyMenu {
 			return;
 		}
 		System.Diagnostics.Process proc=new System.Diagnostics.Process();
-		proc.EnableRaisingEvents=false;
+		//proc.EnableRaisingEvents=false;
 		
 		LoadConfig();
 		string workingFolder=GetWorkingFolder();
@@ -156,7 +155,7 @@ public class ParleyMenu {
 	[MenuItem("Parley/User Guide")]
     public static void OpenParleyUserGuide () { 
 		System.Diagnostics.Process proc = new System.Diagnostics.Process();
-		proc.EnableRaisingEvents=false; 
+		//proc.EnableRaisingEvents=false; 
 		proc.StartInfo.FileName = Directory.GetCurrentDirectory()+PARLEY_FOLDER+Path.DirectorySeparatorChar+"UserGuide.pdf";
 		// Identify is PDF Viewer is installed. If not then offer to download it.
 		try {
@@ -273,7 +272,7 @@ public class ParleyMenu {
 		
 		return quests;
 	}
-//	*/
+
 
 	/*
 	// Add Quests to a GameObject
@@ -340,4 +339,4 @@ public class ParleyMenu {
 		return scenes;
 	}*/
 
-//}
+}

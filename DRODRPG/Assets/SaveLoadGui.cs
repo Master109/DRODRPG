@@ -1,4 +1,4 @@
-/*
+///*
 using UnityEngine;
 using System.Collections;
 using System.IO;
@@ -56,6 +56,7 @@ public class SaveLoadGui : MonoBehaviour {
 			state=State.Menu;
 			Parley.GetInstance().SetInGui(true);
 		}
+		//showMenu = true;
 	}
 	
 	public string GetSavedGameFolder(){
@@ -103,7 +104,7 @@ public class SaveLoadGui : MonoBehaviour {
 		int y=100;
 		int x=Screen.width/2-50;
 		
-		if (GUI.Button(new Rect(x,y,100,30),"Save Game")){
+		if (GUI.Button(new Rect(x,y,500,30),"Save Game")){
 			state=State.Save;
 		}
 		y+=40;
@@ -112,16 +113,16 @@ public class SaveLoadGui : MonoBehaviour {
 			somthingsaved=IsThereASaveGame(t);
 		}
 		if (somthingsaved){
-			if (GUI.Button(new Rect(x,y,100,30),"Load Game")){
+			if (GUI.Button(new Rect(x,y,500,30),"Load Game")){
 				state=State.Load;
 			}
 			y+=40;
 		}
-		if (GUI.Button(new Rect(x,y,100,30),"Close Menu")){
+		if (GUI.Button(new Rect(x,y,500,30),"Close Menu")){
 			HideMenu();
 		}
 		y+=40;
-		if (GUI.Button(new Rect(x,y,100,30),"Exit")){
+		if (GUI.Button(new Rect(x,y,500,30),"Exit")){
 			Application.LoadLevel("An Igg Story Menu");
 		}
 		y+=40;
@@ -132,14 +133,14 @@ public class SaveLoadGui : MonoBehaviour {
 		int x=Screen.width/2-50;
 
 		for (int t=0;t<NUMBER_OF_GAMES;t++){
-			if (GUI.Button(new Rect(x,y,100,30),IsThereASaveGame(t)?"Overwrite "+(t+1):"Save In "+(t+1))){
+			if (GUI.Button(new Rect(x,y,500,30),IsThereASaveGame(t)?"Overwrite "+(t+1):"Save In "+(t+1))){
 				Save(saveFiles[t]);
 				usedSlots[t]=true;
 				HideMenu();
 			}
 			y+=40;
 		}
-		if (GUI.Button(new Rect(x,y,100,30),"Return")){
+		if (GUI.Button(new Rect(x,y,500,30),"Return")){
 			state=State.Menu;
 		}
 	}
@@ -150,14 +151,14 @@ public class SaveLoadGui : MonoBehaviour {
 
 		for (int t=0;t<NUMBER_OF_GAMES;t++){
 			if (IsThereASaveGame(t)){
-				if (GUI.Button(new Rect(x,y,100,30),"Load Slot "+(t+1))){
+				if (GUI.Button(new Rect(x,y,500,30),"Load Slot "+(t+1))){
 					Load(saveFiles[t]);
 					HideMenu();
 				}
 				y+=40;
 			}
 		}
-		if (GUI.Button(new Rect(x,y,100,30),"Return")){
+		if (GUI.Button(new Rect(x,y,500,30),"Return")){
 			state=State.Menu;
 		}
 	}
@@ -226,4 +227,4 @@ public class SaveLoadGui : MonoBehaviour {
 		fs.Close();
 	}
 }
-*/
+//*/

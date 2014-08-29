@@ -59,7 +59,7 @@ public class SkeletonArcher : MonoBehaviour
 		if (moveTimer > moveRate && !canFire)
 		{
 			Vector3 moveToPos = transform.position;
-			if (transform.position.x - player.transform.position.x > 0 && !Physics.Raycast(new Vector3(moveToPos.x - moveDist, moveDist * 2, moveToPos.z), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x - moveDist, moveDist * 2, moveToPos.z), Vector3.down, moveDist * 2, whatIsGround))
+			if (transform.position.x - player.transform.position.x > 0)
 			{
 				moveToPos -= Vector3.right * moveDist;
 				if ((Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1))
@@ -69,7 +69,7 @@ public class SkeletonArcher : MonoBehaviour
 					return;
 				}
 			}
-			else if (transform.position.x - player.transform.position.x < 0 && !Physics.Raycast(new Vector3(moveToPos.x + moveDist, moveDist * 2, moveToPos.z), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x + moveDist, moveDist * 2, moveToPos.z), Vector3.down, moveDist * 2, whatIsGround))
+			else if (transform.position.x - player.transform.position.x < 0)
 			{
 				moveToPos += Vector3.right * moveDist;
 				if ((Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1))
@@ -79,7 +79,7 @@ public class SkeletonArcher : MonoBehaviour
 					return;
 				}
 			}
-			if (transform.position.z - player.transform.position.z > 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z - moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			if (transform.position.z - player.transform.position.z > 0)
 			{
 				moveToPos -= Vector3.forward * moveDist;
 				if ((Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1))
@@ -89,7 +89,7 @@ public class SkeletonArcher : MonoBehaviour
 					return;
 				}
 			}
-			else if (transform.position.z - player.transform.position.z < 0 && !Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.z + moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos.x, moveDist * 2 - .1f, moveToPos.x + moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			else if (transform.position.z - player.transform.position.z < 0)
 			{
 				moveToPos += Vector3.forward * moveDist;
 				if ((Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1))
@@ -101,7 +101,7 @@ public class SkeletonArcher : MonoBehaviour
 			}
 
 			Vector3 moveToPos2 = transform.position;
-			if (transform.position.z - player.transform.position.z > 0 && !Physics.Raycast(new Vector3(moveToPos2.x, moveDist * 2, moveToPos2.z - moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos2.x, moveDist * 2, moveToPos2.z - moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			if (transform.position.z - player.transform.position.z > 0)
 			{
 				moveToPos2 -= Vector3.forward * moveDist;
 				if ((Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1))
@@ -111,7 +111,7 @@ public class SkeletonArcher : MonoBehaviour
 					return;
 				}
 			}
-			else if (transform.position.z - player.transform.position.z < 0 && !Physics.Raycast(new Vector3(moveToPos2.x, moveDist * 2, moveToPos2.z + moveDist), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos2.x, moveDist * 2, moveToPos2.x + moveDist), Vector3.down, moveDist * 2, whatIsGround))
+			else if (transform.position.z - player.transform.position.z < 0)
 			{
 				moveToPos2 += Vector3.forward * moveDist;
 				if ((Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1))
@@ -121,7 +121,7 @@ public class SkeletonArcher : MonoBehaviour
 					return;
 				}
 			}
-			if (transform.position.x - player.transform.position.x > 0 && !Physics.Raycast(new Vector3(moveToPos2.x - moveDist, moveDist * 2, moveToPos2.z), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos2.x - moveDist, moveDist * 2, moveToPos2.z), Vector3.down, moveDist * 2, whatIsGround))
+			if (transform.position.x - player.transform.position.x > 0)
 			{
 				moveToPos2 -= Vector3.right * moveDist;
 				if ((Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1))
@@ -131,7 +131,7 @@ public class SkeletonArcher : MonoBehaviour
 					return;
 				}
 			}
-			else if (transform.position.x - player.transform.position.x < 0 && !Physics.Raycast(new Vector3(moveToPos2.x + moveDist, moveDist * 2, moveToPos2.z), Vector3.down, moveDist * 2, whatIsNonWalkable) && Physics.Raycast(new Vector3(moveToPos2.x + moveDist, moveDist * 2, moveToPos2.z), Vector3.down, moveDist * 2, whatIsGround))
+			else if (transform.position.x - player.transform.position.x < 0)
 			{
 				moveToPos2 += Vector3.right * moveDist;
 				if ((Mathf.Abs(toPlayer.normalized.x) == 0 || Mathf.Abs(toPlayer.normalized.x) == 1) && (Mathf.Abs(toPlayer.normalized.z) == 0 || Mathf.Abs(toPlayer.normalized.z) == 1))
@@ -150,7 +150,7 @@ public class SkeletonArcher : MonoBehaviour
 			else
 				idealMoveToPos = moveToPos2;
 			
-			if (Physics.Raycast(new Vector3(idealMoveToPos.x, moveDist * 2, idealMoveToPos.z), Vector3.down, moveDist * 2, whatIsGround))
+			if (Physics.Raycast(new Vector3(idealMoveToPos.x, moveDist * 2, idealMoveToPos.z), Vector3.down, moveDist * 2, whatIsGround) && !Physics.Raycast(new Vector3(moveToPos2.x - moveDist, moveDist * 2, moveToPos2.z), Vector3.down, moveDist * 2, whatIsNonWalkable))
 			{
 				transform.position = idealMoveToPos;
 				Vector3 pToCurrentPos = transform.position - pLoc;

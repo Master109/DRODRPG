@@ -1,4 +1,4 @@
-6
+15
 [
 0
 73
@@ -11,7 +11,7 @@ Erigdor is a medium sized city, inhabited by many people. A lot of them are prou
 false
 false
 
-2
+3
 player
 SayByeTrue
 false
@@ -20,14 +20,27 @@ player
 Save
 false
 0
+player
+AddCombinedQuestEventListener
+false
+1
+"HasNoOldErigdorQuests,HasNoNewErigdorQuests,HasNoErigdorQuests"
 AtErigdor
 
 true
-1
+2
 [
 Quests
 !_@~~@_!
 1
+
+false
+true
+]
+[
+Shops
+!_@~~@_!
+10
 
 false
 true
@@ -38,7 +51,7 @@ true
 75
 -1
 
-Quests for "Erigdor"
+Quests
 !_@~~@_!
 
 !_@~~@_!
@@ -46,14 +59,22 @@ false
 false
 
 0
-
+!HasNoErigdorQuests
 
 true
-2
+3
 [
-Erigdor
+Old quests
 !_@~~@_!
-2
+8
+
+false
+true
+]
+[
+New quests
+!_@~~@_!
+9
 
 false
 true
@@ -80,7 +101,7 @@ false
 false
 
 0
-
+!WarnKing
 
 true
 2
@@ -151,9 +172,61 @@ true
 false
 false
 
+0
+
+
+true
+1
+[
+Load game
+!_@~~@_!
+6
+
+false
+true
+]
+]
+[
+5
+82
+-1
+
+Yes, what is it?
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+
+0
+
+
+true
+1
+[
+Tell him
+!_@~~@_!
+7
+
+false
+true
+]
+]
+[
+6
+85
+-1
+
+GAME OVER
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+
 1
 player
-GameOver
+Load
 false
 0
 
@@ -162,11 +235,294 @@ true
 0
 ]
 [
-5
-82
+7
+86
+7
+
+Thanks for bringing this to my attention. My mages will scry -- I mean scout with their magic the army and find out how much of a threat they are. And by the way, since you probably have never been to my city before, know that the crime rate is distressingly high, so if you tell a guard of a crime that has or will happen you will be rewarded handsomely if the culprit is found.
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+WarnKing
+1
+player
+TriggerQuestEvent
+false
+1
+"HasNoOldErigdorQuests"
+
+
+true
+1
+[
+Back
+!_@~~@_!
+0
+
+false
+true
+]
+]
+[
+8
+88
 -1
 
+Old quests
+!_@~~@_!
 
+!_@~~@_!
+false
+false
+
+0
+!HasNoOldErigdorQuests
+
+true
+3
+[
+Journey to Erigdor
+!_@~~@_!
+2
+
+false
+true
+]
+[
+Back
+!_@~~@_!
+1
+
+false
+true
+]
+[
+A framed man
+!_@~~@_!
+14
+
+false
+true
+]
+]
+[
+9
+90
+-1
+
+New quests
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+
+0
+!HasNoNewErigdorQuests
+
+true
+2
+[
+A framed man
+!_@~~@_!
+11
+
+false
+true
+]
+[
+Back
+!_@~~@_!
+1
+
+false
+true
+]
+]
+[
+10
+92
+-1
+
+Shops
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+
+0
+
+
+true
+1
+[
+General store
+!_@~~@_!
+-1
+
+false
+true
+]
+]
+[
+11
+97
+-1
+
+At an inn in Erigdor you meet a guy that says to you, "Hey, I'm Brewmond. What's your name?" You tell him, and then he says, "Ah, <name>, I like the sound of that. I not well acquainted with the ancient language Alnágr, but doesn't that mean anything in it?"
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+
+0
+
+
+true
+6
+[
+It means horse poop
+!_@~~@_!
+12
+
+false
+true
+]
+[
+I know but I'm too lazy to say
+!_@~~@_!
+12
+
+false
+true
+]
+[
+If I told you I'd have to kill you
+!_@~~@_!
+12
+
+false
+true
+]
+[
+Study my name and you'll find life's meaning
+!_@~~@_!
+12
+
+false
+true
+]
+[
+I don't know
+!_@~~@_!
+13
+
+false
+true
+]
+[
+Bye! {Back to previous menu}
+!_@~~@_!
+9
+
+false
+true
+]
+]
+[
+12
+100
+-1
+
+He looks surprised in a comical way. "Ok... interesting. Anyway, you look like a tough trustworthy guy that is willing to help others. Can I ask a favor of you?"
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+StartQuestA_framed_man
+0
+
+
+true
+3
+[
+Depends on what it is
+!_@~~@_!
+102
+
+true
+true
+]
+[
+Of course not! I'm leaving!
+!_@~~@_!
+9
+
+false
+true
+]
+[
+Yes, of course.
+!_@~~@_!
+102
+
+true
+true
+]
+]
+[
+13
+101
+-1
+
+That's ok. Anyway, you look like a tough trustworthy guy that is willing to help others. Can I ask a favor of you?
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+StartQuestA_framed_man
+0
+
+
+true
+3
+[
+Depends on what it is
+!_@~~@_!
+102
+
+true
+true
+]
+[
+Yes, of course.
+!_@~~@_!
+102
+
+true
+true
+]
+[
+Of course not! I'm leaving!
+!_@~~@_!
+9
+
+false
+true
+]
+]
+[
+14
+103
+-1
+
+Objectives for "A framed man"
 !_@~~@_!
 
 !_@~~@_!

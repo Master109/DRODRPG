@@ -29,6 +29,8 @@ public class RandomMap : MonoBehaviour
 	public GameObject beacon;
 	public bool makeBeacons;
 	bool runOnce = true;
+	public Material mountains;
+	public bool makeMountains;
 
 	// Use this for initialization
 	void Start ()
@@ -67,8 +69,30 @@ public class RandomMap : MonoBehaviour
 			makeBeacons = false;
 			MakeBeacons ();
 		}
+		if (makeMountains)
+		{
+			makeMountains = false;
+			StartCoroutine ("MakeMountains");
+		}
 	}
-	
+
+	IEnumerator MakeMountains ()
+	{
+		for (int x3 = 0; x3 < mapSizeX; x3 ++)
+		{
+			for (int z3 = 0; z3 < mapSizeZ; z3 ++)
+			{
+				if (!Physics.CheckSphere(new Vector3(x3 * gridSpacing - mapSizeX * 2 + 2, 0, z3 * gridSpacing - mapSizeZ * 2 + 2), 1, 8))
+				{
+					GameObject g = (GameObject) GameObject.Instantiate(cube, new Vector3(x3 * gridSpacing - mapSizeX * 2 + 2, -4, z3 * gridSpacing - mapSizeZ * 2 + 2), Quaternion.identity);
+					g.renderer.sharedMaterial = mountains;
+				}
+				yield return new WaitForSeconds(0f);
+			}
+		}
+		yield return new WaitForSeconds(0f);
+	}
+
 	IEnumerator MakeMap ()
 	{
 		int r = Mathf.RoundToInt(Random.Range(0, GameObject.FindGameObjectsWithTag("Making").Length));
@@ -89,6 +113,7 @@ public class RandomMap : MonoBehaviour
 				offset = new Vector3(x / gridSpacing + mapSizeX / 2, 0, z / gridSpacing + mapSizeZ / 2);
 				x = (int) (offset.x + .0f);
 				z = (int) (offset.z + .0f);
+				yield return new WaitForSeconds(.0f);
 			}
 			if (i == 0)
 			{
@@ -126,9 +151,6 @@ public class RandomMap : MonoBehaviour
 			x2 = x;
 			z2 = z;
 			keepRunning = false;
-
-			//PickNextSpace ();
-			keepRunning = false;
 			StartCoroutine("PickNextSpace");
 			while (!keepRunning)
 			{
@@ -143,27 +165,26 @@ public class RandomMap : MonoBehaviour
 			i2 ++;
 			yield return new WaitForSeconds(0f);
 		}
-		Debug.Log ("FINISHED");
 		for (int x3 = 0; x3 < mapSizeX; x3 ++)
 		{
 			for (int z3 = 0; z3 < mapSizeZ; z3 ++)
 			{
 				if (gos[x3, z3] == null)
+				{
 					gosBottom[x3, z3] = (GameObject) GameObject.Instantiate(cube, new Vector3(x3 * gridSpacing - mapSizeX * 2 + 2, -4, z3 * gridSpacing - mapSizeZ * 2 + 2), Quaternion.identity);
+					gosBottom[x3, z3].renderer.sharedMaterial = mountains;
+				}
+				yield return new WaitForSeconds(0f);
 			}
 		}
-		MakeBeacons ();
+		//MakeBeacons ();
 	}
 
 	void MakeBeacons ()
 	{
 		for (int x3 = (0) * gridSpacing - mapSizeX * 2 - 2; x3 < (mapSizeX) * gridSpacing - mapSizeX * 2 - 2; x3 += 100)
-		{
 			for (int z3 = (0) * gridSpacing - mapSizeZ * 2 - 2; z3 < (mapSizeZ) * gridSpacing - mapSizeZ * 2 - 2; z3 += 100)
-			{
 				go = (GameObject) GameObject.Instantiate(beacon, new Vector3(x3, beacon.transform.position.y, z3), Quaternion.identity);
-			}
-		}
 	}
 	
 	void ExpandMap ()

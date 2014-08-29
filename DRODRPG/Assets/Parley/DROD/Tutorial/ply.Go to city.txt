@@ -8,9 +8,9 @@ Ok! The tutorial is over! You are two button-presses away from starting your jou
 !_@~~@_!
 
 !_@~~@_!
-true
 false
-ReadyForQuest3
+false
+StartQuestJourney_to_Erigdor
 2
 player
 ExitAreaTrue

@@ -30,13 +30,13 @@ public class ParleyEditor : Editor {
 		int oldAct=actProperty.intValue;
 		int oldScene=sceneProperty.intValue;
 		
-		//int newAct=EditorGUILayout.Popup("Act",oldAct,ParleyMenu.GetActs(),new GUILayoutOption[0]);
-		//int newScene=EditorGUILayout.Popup("Scene",newAct!=oldAct?0:oldScene,ParleyMenu.GetActsScenes()[ParleyMenu.GetActs()[newAct]],new GUILayoutOption[0]);
+		int newAct=EditorGUILayout.Popup("Act",oldAct,ParleyMenu.GetActs(),new GUILayoutOption[0]);
+		int newScene=EditorGUILayout.Popup("Scene",newAct!=oldAct?0:oldScene,ParleyMenu.GetActsScenes()[ParleyMenu.GetActs()[newAct]],new GUILayoutOption[0]);
 
-		if (/*oldAct!=newAct || oldScene!=newScene || */showDebugProperty.boolValue!=showDebug || clearDebugProperty.boolValue!=clearFlag){
+		if (oldAct!=newAct || oldScene!=newScene || showDebugProperty.boolValue!=showDebug || clearDebugProperty.boolValue!=clearFlag){
 			Undo.RegisterSceneUndo("Change Act and Scene");
-			//sceneProperty.intValue=newScene;
-			//actProperty.intValue=newAct;
+			sceneProperty.intValue=newScene;
+			actProperty.intValue=newAct;
 			showDebugProperty.boolValue=showDebug;
 			clearDebugProperty.boolValue=clearFlag;
 			
@@ -69,14 +69,14 @@ public class ParleyEditor : Editor {
 		sceneProperty = serializedObject.FindProperty("scene");
 		questListProperty = serializedObject.FindProperty("questList");
 		
-		//TextAsset[] questsList=ParleyMenu.GetActSceneQuests(ParleyMenu.GetActs()[actProperty.intValue],ParleyMenu.GetActsScenes()[ParleyMenu.GetActs()[actProperty.intValue]][sceneProperty.intValue]).ToArray();
+		TextAsset[] questsList=ParleyMenu.GetActSceneQuests(ParleyMenu.GetActs()[actProperty.intValue],ParleyMenu.GetActsScenes()[ParleyMenu.GetActs()[actProperty.intValue]][sceneProperty.intValue]).ToArray();
 		
 		questListProperty.ClearArray();
 		
-		//for (int x=0;x<questsList.Length;x++){
-		//	questListProperty.InsertArrayElementAtIndex(x);
-		//	questListProperty.GetArrayElementAtIndex(x).objectReferenceValue=questsList[x];
-		//}
+		for (int x=0;x<questsList.Length;x++){
+			questListProperty.InsertArrayElementAtIndex(x);
+			questListProperty.GetArrayElementAtIndex(x).objectReferenceValue=questsList[x];
+		}
 	}
 
 }

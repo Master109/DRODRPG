@@ -28,13 +28,13 @@ public class Player : MonoBehaviour
 	public bool canChangeExitArea = true;
 	public string messageAfterQuestAccept = "";
 	public bool restart;
+	public ArrayList combinedQuestEvents = new ArrayList();
 
 	// Use this for initialization
 	void Start ()
 	{
 		if (restart)
 			PlayerPrefs.DeleteAll();
-		GameObject.Find ("InitialSpace").GetComponent<Dialog>().TriggerDialog();
 		moveRate -= moveDelayTime;
 		moveDelayTimer = -1;
 		if (PlayerPrefs.GetInt("Playing", 1) == 0 && PlayerPrefs.GetInt("Saved", 0) == 1)
@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 			PlayerPrefs.SetInt("Playing", 1);
 			Load ();
 		}
+		else if (PlayerPrefs.GetInt("Saved", 0) == 0)
+			GameObject.Find ("InitialSpace").GetComponent<Dialog>().TriggerDialog();
 	}
 	
 	// Update is called once per frame
@@ -105,6 +107,10 @@ public class Player : MonoBehaviour
 				moveDelayTimer = -1;
 			}
 		}
+		foreach (string s in combinedQuestEvents)
+		{
+			TriggerCombinedQuestEvent(s);
+		}
 	}
 
 	public void CreateQuestPoint (string goName)
@@ -167,9 +173,14 @@ public class Player : MonoBehaviour
 		canChangeExitArea = false;
 	}
 
-	public void ObjectToDefaultLayer (string name)
+	public void SetObjectLayer (string str)
 	{
-		GameObject.Find(name).layer = LayerMask.NameToLayer("Default");
+		int indexOfComma = str.IndexOf(",");
+		string goName = str.Substring(0, indexOfComma);
+		Debug.Log ("goName = " + goName);
+		string layerName = str.Substring(indexOfComma + 1, str.Length - indexOfComma - 1);
+		Debug.Log ("layerName = " + layerName);
+		GameObject.Find(goName).layer = LayerMask.NameToLayer(layerName);
 	}
 
 	public void MessageAfterQuestAccept (string message)
@@ -177,17 +188,44 @@ public class Player : MonoBehaviour
 		messageAfterQuestAccept = message;
 	}
 
+	public void TriggerQuestEvent (string questEvent)
+	{
+		Parley.GetInstance().TriggerQuestEvent(questEvent);
+	}
+
+	public void TriggerCombinedQuestEvent (string str)
+	{
+		int indexOfComma1 = str.IndexOf(",");
+		int indexOfComma2 = str.LastIndexOf(",");
+		string questEvent1 = str.Substring(0, indexOfComma1);
+		string questEvent2 = str.Substring(indexOfComma1 + 1, indexOfComma2 - indexOfComma1);
+		string questEvent3 = str.Substring(indexOfComma2 + 1, str.Length - indexOfComma2 - 1);
+		bool questEvent1True = (Parley.GetInstance().GetQuestEventSet().Contains(questEvent1) || (questEvent1.Contains("!") && !Parley.GetInstance().GetQuestEventSet().Contains(questEvent1)));
+		bool questEvent2True = (Parley.GetInstance().GetQuestEventSet().Contains(questEvent2) || (questEvent2.Contains("!") && !Parley.GetInstance().GetQuestEventSet().Contains(questEvent2)));
+		if (questEvent1True || questEvent2True)
+		{
+			Parley.GetInstance().TriggerQuestEvent(questEvent3);
+			if (combinedQuestEvents.Contains(str))
+				combinedQuestEvents.Remove(str);
+		}
+	}
+
+	public void AddCombinedQuestEventListener (string str)
+	{
+		combinedQuestEvents.Add(str);
+	}
+
 	public void Save ()
 	{
+		Parley.GetInstance().GetComponent<SaveLoadGui>().Save("DROD RPG Savefile 2.txt");
 		LevelSerializer.SerializeLevelToFile("DROD RPG Savefile.txt");
-		//gameObject.StartExtendedCoroutine(SaveGameManager.Instance.GetComponent<TestSerialization>().Save ());
 		PlayerPrefs.SetInt("Saved", 1);
 	}
 
 	public void Load ()
 	{
+		Parley.GetInstance().GetComponent<SaveLoadGui>().Load("DROD RPG Savefile 2.txt");
 		LevelSerializer.LoadSavedLevelFromFile("DROD RPG Savefile.txt");
-		//gameObject.StartExtendedCoroutine(SaveGameManager.Instance.GetComponent<TestSerialization>().Load ());
 	}
 
 	void OnApplicationQuit ()

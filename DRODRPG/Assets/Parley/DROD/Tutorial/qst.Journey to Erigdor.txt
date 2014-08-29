@@ -14,7 +14,7 @@ Before you started that horrible tutorial, your character's village was attacked
 
 
 0
-ReadyForQuest3
+StartQuestJourney_to_Erigdor
 true
 2
 [
@@ -44,7 +44,7 @@ Warn king
 
 1
 false
-MeetKing
+WarnKing
 
 
 0

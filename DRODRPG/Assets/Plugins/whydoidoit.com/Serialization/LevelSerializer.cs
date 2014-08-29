@@ -240,13 +240,12 @@ public static class LevelSerializer
 	/// <param name='filename'>
 	/// The filename to use
 	/// </param>
-	public static IEnumerator LoadSavedLevelFromFile(string filename)
+	public static void LoadSavedLevelFromFile(string filename)
 	{
 		var x = File.OpenText(Application.persistentDataPath + "/" + filename);
 		var data = x.ReadToEnd();
 		x.Close();
 		LoadSavedLevel(data);
-		yield return new WaitForSeconds(0);
 	}
 	
 	static readonly object Guard = new object();
@@ -1304,10 +1303,9 @@ public static class LevelSerializer
         /// <summary>
         ///   Load this saved game
         /// </summary>
-        public IEnumerator Load()
+        public void Load()
         {
             LoadSavedLevel(Data);
-			yield return new WaitForSeconds (0);
         }
 
         /// <summary>
