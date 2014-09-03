@@ -14,7 +14,7 @@ public class EditPrefabIdentifier : Editor
 	{
 		EditorGUILayout.BeginHorizontal();
 		EditorGUILayout.PrefixLabel("Current Prefab Identifier");
-		EditorGUILayout.LabelField((target as UniqueIdentifier2).ClassId);
+		EditorGUILayout.LabelField((target as UniqueIdentifier).ClassId);
 
 		if (GUILayout.Button("Create new prefab identifier"))
 		{
@@ -22,7 +22,7 @@ public class EditPrefabIdentifier : Editor
 				"If you change the prefab identifier and then update the prefab or store it over an existing prefab then saved information will no longer work correctly.  You will normally click this button when you intend to create a new prefab out of an existing prefab. Use with caution, ESPECIALLY AFTER YOU HAVE RELEASED YOUR GAME.", 
 				"I understand, go ahead and changed it", "Cancel"))
 			{
-				(target as UniqueIdentifier2).ClassId = Guid.NewGuid().ToString();
+				(target as UniqueIdentifier).ClassId = Guid.NewGuid().ToString();
 				EditorUtility.SetDirty(target);
 			}
 		}
@@ -32,7 +32,7 @@ public class EditPrefabIdentifier : Editor
 	
 		DrawDefaultInspector();
 		
-		var t = target as StoreInformation2;
+		var t = target as StoreInformation;
 		
 		if (!t.StoreAllComponents)
 		{ 

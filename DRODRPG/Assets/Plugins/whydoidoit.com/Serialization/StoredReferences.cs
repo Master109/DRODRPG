@@ -149,7 +149,7 @@ public class StoredReferences : ScriptableObject
 	
 	void FixEntries()
 	{
-		entries = entries.Where(g=> g != null && g.gameObject != null && g.gameObject.GetComponent<UniqueIdentifier2>() != null).ToList();
+		entries = entries.Where(g=> g != null && g.gameObject != null && g.gameObject.GetComponent<UniqueIdentifier>() != null).ToList();
 	}
 	
 

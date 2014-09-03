@@ -5,7 +5,7 @@ using System.Linq;
 [DontStore]
 [AddComponentMenu("Storage/Prefab Identifier")]
 [ExecuteInEditMode]
-public class PrefabIdentifier : StoreInformation2
+public class PrefabIdentifier : StoreInformation
 {
 	bool inScenePrefab;
 	
@@ -18,9 +18,9 @@ public class PrefabIdentifier : StoreInformation2
 	{
 		inScenePrefab = true;
 		base.Awake();
-		foreach (var c in GetComponents<UniqueIdentifier2>().Where(t=>t.GetType() == typeof(UniqueIdentifier2) || 
+		foreach (var c in GetComponents<UniqueIdentifier>().Where(t=>t.GetType() == typeof(UniqueIdentifier) || 
 			(t.GetType() == typeof(PrefabIdentifier) && t != this) ||
-			t.GetType() == typeof(StoreInformation2)
+			t.GetType() == typeof(StoreInformation)
 			))
 			DestroyImmediate (c);
 	}	

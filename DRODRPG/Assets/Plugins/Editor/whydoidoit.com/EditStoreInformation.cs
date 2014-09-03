@@ -7,13 +7,13 @@ using System;
 
 using UnityEditor;
 
-[CustomEditor(typeof(StoreInformation2))]
-public class EditStoreInformation2 : Editor
+[CustomEditor(typeof(StoreInformation))]
+public class EditStoreInformation : Editor
 {
 	public override void OnInspectorGUI()
 	{
 		DrawDefaultInspector();
-		var t = target as StoreInformation2;
+		var t = target as StoreInformation;
 		
 		if (!t.StoreAllComponents)
 		{ 

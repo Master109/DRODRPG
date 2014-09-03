@@ -720,8 +720,8 @@ public static class LevelSerializer
     {
         foreach (var pair in Resources.LoadAll(path, typeof (GameObject))
             .Cast<GameObject>()
-            .Where(go => go.GetComponent<UniqueIdentifier2>() != null)
-            .ToDictionary(go => go.GetComponent<UniqueIdentifier2>().ClassId, go => go).Where(
+            .Where(go => go.GetComponent<UniqueIdentifier>() != null)
+            .ToDictionary(go => go.GetComponent<UniqueIdentifier>().ClassId, go => go).Where(
                 pair => !AllPrefabs.ContainsKey(pair.Key)))
         {
             AllPrefabs.Add(pair.Key, pair.Value);
@@ -816,13 +816,13 @@ public static class LevelSerializer
         Progress(section, complete);
     }
 
-    internal static bool HasParent(UniqueIdentifier2 i, string id)
+    internal static bool HasParent(UniqueIdentifier i, string id)
     {
-        var scan = UniqueIdentifier2.GetByName(i.Id).transform;
+        var scan = UniqueIdentifier.GetByName(i.Id).transform;
         while (scan != null)
         {
-            UniqueIdentifier2 ui;
-            if ((ui = scan.GetComponent<UniqueIdentifier2>()) != null)
+            UniqueIdentifier ui;
+            if ((ui = scan.GetComponent<UniqueIdentifier>()) != null)
             {
                 if (id == ui.Id)
                 {
@@ -834,11 +834,11 @@ public static class LevelSerializer
         return false;
     }
 
-    private static void GetComponentsInChildrenWithClause(Transform t, List<StoreInformation2> components)
+    private static void GetComponentsInChildrenWithClause(Transform t, List<StoreInformation> components)
     {
         foreach (var c in t.Cast<Transform>())
         {
-            var s = c.GetComponent<StoreInformation2>();
+            var s = c.GetComponent<StoreInformation>();
             if (s != null)
             {
                 if (!(s is PrefabIdentifier))
@@ -857,9 +857,9 @@ public static class LevelSerializer
     /// <summary>
     ///   Internal function
     /// </summary>
-    public static List<StoreInformation2> GetComponentsInChildrenWithClause(GameObject go)
+    public static List<StoreInformation> GetComponentsInChildrenWithClause(GameObject go)
     {
-        var components = new List<StoreInformation2>();
+        var components = new List<StoreInformation>();
         GetComponentsInChildrenWithClause(go.transform, components);
         return components;
     }
@@ -876,11 +876,11 @@ public static class LevelSerializer
     /// <returns></returns>
     public static byte[] SaveObjectTree(this GameObject rootOfTree)
     {
-        if (!rootOfTree.GetComponent<UniqueIdentifier2>())
+        if (!rootOfTree.GetComponent<UniqueIdentifier>())
 		{
             EmptyObjectIdentifier.FlagAll(rootOfTree);
 		}
-        return SerializeLevel(false, rootOfTree.GetComponent<UniqueIdentifier2>().Id);
+        return SerializeLevel(false, rootOfTree.GetComponent<UniqueIdentifier>().Id);
     }
 	
 	
@@ -910,7 +910,7 @@ public static class LevelSerializer
 					   
                          };
                 //All of the currently active uniquely identified objects
-                ld.StoredObjectNames = UniqueIdentifier2
+                ld.StoredObjectNames = UniqueIdentifier
                     .AllIdentifiers
                     .Where(i => string.IsNullOrEmpty(id) || i.Id == id || HasParent(i, id))
                     .Select(i => i.gameObject)
@@ -945,20 +945,20 @@ public static class LevelSerializer
                                                              n.GetComponents<Component>().Where(c=>c!=null).Select(
                                                                  c => c.GetType().FullName).Distinct()
                                                                  .ToDictionary(v => v, v => true),
-                                                         Name = n.GetComponent<UniqueIdentifier2>().Id,
+                                                         Name = n.GetComponent<UniqueIdentifier>().Id,
                                                          GameObjectName = n.name,
                                                          ParentName =
                                                              (n.transform.parent == null ||
-                                                              n.transform.parent.GetComponent<UniqueIdentifier2>() ==
+                                                              n.transform.parent.GetComponent<UniqueIdentifier>() ==
                                                               null)
                                                                  ? null
-                                                                 : (n.transform.parent.GetComponent<UniqueIdentifier2>().
+                                                                 : (n.transform.parent.GetComponent<UniqueIdentifier>().
                                                                        Id),
                                                          ClassId = n.GetComponent<PrefabIdentifier>() != null
                                                                        ? n.GetComponent<PrefabIdentifier>().ClassId
                                                                        : string.Empty
                                                      };
-                                        if (n.GetComponent<StoreInformation2>())
+                                        if (n.GetComponent<StoreInformation>())
                                         {
                                             n.SendMessage("OnSerializing", SendMessageOptions.DontRequireReceiver);
                                         }
@@ -986,9 +986,9 @@ public static class LevelSerializer
 
                 //All of the data for the items to be stored
 
-                var toBeProcessed = UniqueIdentifier2
+                var toBeProcessed = UniqueIdentifier
                     .AllIdentifiers
-                    .Where(o => o.GetComponent<StoreInformation2>() != null || o.GetComponent<PrefabIdentifier>() != null)
+                    .Where(o => o.GetComponent<StoreInformation>() != null || o.GetComponent<PrefabIdentifier>() != null)
                     .Where(i => string.IsNullOrEmpty(id) || i.Id == id  || HasParent(i, id))
                     .Where(i => i != null)
                     .Select(i => i.gameObject)
@@ -1027,7 +1027,7 @@ public static class LevelSerializer
                     .Select(c => new
                                      {
                                          Identifier =
-                                     (StoreInformation2) c.gameObject.GetComponent(typeof (StoreInformation2)),
+                                     (StoreInformation) c.gameObject.GetComponent(typeof (StoreInformation)),
                                          Component = c
                                      })
                     .Where(cp =>
@@ -1045,14 +1045,14 @@ public static class LevelSerializer
                                         {
                                             Radical.Log("<{0} : {1} - {2}>", cp.Component.gameObject.GetFullName(),
                                                         cp.Component.GetType().Name,
-                                                        cp.Component.GetComponent<UniqueIdentifier2>().Id);
+                                                        cp.Component.GetComponent<UniqueIdentifier>().Id);
                                             Radical.IndentLog();
                                         }
                                         var sd = new StoredData()
                                                      {
                                                          Type = cp.Component.GetType().FullName,
                                                          ClassId = cp.Identifier.ClassId,
-                                                         Name = cp.Component.GetComponent<UniqueIdentifier2>().Id
+                                                         Name = cp.Component.GetComponent<UniqueIdentifier>().Id
                                                      };
 
                                         if (CustomSerializers.ContainsKey(cp.Component.GetType()))

@@ -40,10 +40,10 @@ public class RadicalRoutineHelper : MonoBehaviour, IDeserialized
 	
 	void Awake()
 	{
-		if(!GetComponent<StoreInformation2>())
+		if(!GetComponent<StoreInformation>())
 		{
-			UniqueIdentifier2 ident;
-			if((ident = GetComponent<UniqueIdentifier2>()))
+			UniqueIdentifier ident;
+			if((ident = GetComponent<UniqueIdentifier>()))
 			{
 				var id = ident.Id;
 				DestroyImmediate(ident);

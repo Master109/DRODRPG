@@ -1,4 +1,4 @@
-16
+15
 [
 0
 73
@@ -24,7 +24,7 @@ player
 AddCombinedQuestEventListener
 false
 1
-"HasNoOldErigdorQuests,HasNoNewErigdorQuests,HasNoErigdorQuests"
+"HasNoOldErigdorQuests,HasNoNewErigdorQuests,HasNoErigdorQuests,AND"
 AtErigdor
 
 true
@@ -32,15 +32,15 @@ true
 [
 Quests
 !_@~~@_!
-1
-
+0
+Erigdor Quests
 false
 true
 ]
 [
 Shops
 !_@~~@_!
-10
+9
 
 false
 true
@@ -62,11 +62,11 @@ false
 !HasNoErigdorQuests
 
 true
-3
+2
 [
 Old quests
 !_@~~@_!
-8
+-1
 
 false
 true
@@ -74,15 +74,7 @@ true
 [
 New quests
 !_@~~@_!
-9
-
-false
-true
-]
-[
-Back
-!_@~~@_!
-0
+8
 
 false
 true
@@ -116,8 +108,8 @@ true
 [
 Back
 !_@~~@_!
-1
-
+0
+Erigdor Quests
 false
 true
 ]
@@ -125,7 +117,7 @@ true
 [
 3
 78
-3
+-1
 
 After telling the guards at the gate that you have important news to tell the king a guard escorts you into the castle. The castle's interior signaled that it was not a luxury palace. It was not overly spacious and there were minimal decorations. Soon after, you were inside the throne room, which looked fittingly more imperial than the rest of the castle. You walk up to the king and say...
 !_@~~@_!
@@ -134,10 +126,6 @@ After telling the guards at the gate that you have important news to tell the ki
 false
 false
 
-1
-player
-SayByeFalse
-false
 0
 
 
@@ -248,18 +236,18 @@ false
 WarnKing
 1
 player
-TriggerQuestEvent
+TriggerCombinedQuestEvent
 false
 1
-"HasNoOldErigdorQuests"
+"!HeardOfHouse,!HeardOfHouse,HasNoOldErigdorQuests,AND"
 
 
 true
 1
 [
-Back
+Next menu
 !_@~~@_!
-0
+1
 
 false
 true
@@ -267,48 +255,6 @@ true
 ]
 [
 8
-88
--1
-
-Old quests
-!_@~~@_!
-
-!_@~~@_!
-false
-false
-
-0
-!HasNoOldErigdorQuests
-
-true
-3
-[
-Journey to Erigdor
-!_@~~@_!
-2
-
-false
-true
-]
-[
-Back
-!_@~~@_!
-1
-
-false
-true
-]
-[
-A framed man
-!_@~~@_!
-14
-
-false
-true
-]
-]
-[
-9
 90
 -1
 
@@ -319,12 +265,7 @@ New quests
 false
 false
 
-1
-player
-AddCombinedQuestEventListener
-false
-1
-""
+0
 !HasNoNewErigdorQuests
 
 true
@@ -332,22 +273,22 @@ true
 [
 A framed man
 !_@~~@_!
-11
-
-false
-true
-]
-[
-Back
-!_@~~@_!
-1
-
-false
-true
-]
-]
-[
 10
+
+false
+true
+]
+[
+Previous menu
+!_@~~@_!
+0
+Erigdor Quests
+false
+true
+]
+]
+[
+9
 92
 -1
 
@@ -362,7 +303,7 @@ false
 
 
 true
-1
+2
 [
 General store
 !_@~~@_!
@@ -371,13 +312,21 @@ General store
 false
 true
 ]
+[
+Previous menu
+!_@~~@_!
+0
+
+false
+true
+]
 ]
 [
-11
+10
 97
 -1
 
-At an inn in Erigdor you meet a guy that says to you, "Hey, I'm Bremond. What's your name?" You tell him, and then he says, "Ah, <name>, I like the sound of that. I not well acquainted with the ancient language Alnágr, but doesn't that mean anything in it?"
+At an inn in Erigdor you meet a guy that says to you, "Hey, I'm Bremond. What's your name?" You tell him, and then he says, "Ah, <name>, I like the sound of that. I not well acquainted with the ancient language Alnagr, but doesn't that mean anything in it?"
 !_@~~@_!
 
 !_@~~@_!
@@ -385,14 +334,14 @@ false
 false
 
 0
-
+!HeardOfHouse
 
 true
 6
 [
 It means horse poop
 !_@~~@_!
-12
+11
 
 false
 true
@@ -400,7 +349,7 @@ true
 [
 I know but I'm too lazy to say
 !_@~~@_!
-12
+11
 
 false
 true
@@ -408,7 +357,7 @@ true
 [
 If I told you I'd have to kill you
 !_@~~@_!
-12
+11
 
 false
 true
@@ -416,7 +365,7 @@ true
 [
 Study my name and you'll find life's meaning
 !_@~~@_!
-12
+11
 
 false
 true
@@ -424,15 +373,82 @@ true
 [
 I don't know
 !_@~~@_!
-13
+12
 
 false
 true
 ]
 [
-Bye! {Back to previous menu}
+Previous menu
 !_@~~@_!
-9
+8
+
+false
+true
+]
+]
+[
+11
+100
+-1
+
+He looks surprised in a comical way. "Ok... interesting.... Anyway, you look like a trustworthy guy that is willing to help others. Can I ask a favor of you?"
+!_@~~@_!
+
+!_@~~@_!
+false
+false
+StartQuestA_framed_man
+5
+player
+MessageAfterQuestAccept
+false
+1
+"player.TriggerQuestEvent(@HeardOfHouse@);,A framed man"
+player
+MessageAfterQuestAccept
+false
+1
+"player.TriggerQuestEvent(@!HasNoOldErigdorQuests@);,A framed man"
+player
+MessageAfterQuestAccept
+false
+1
+"player.TriggerQuestEvent(@HasNoNewErigdorQuests@);,A framed man"
+player
+MessageAfterQuestAccept
+false
+1
+"player.StartDialog(@Erigdor@);,A framed man"
+player
+MessageAfterQuestAccept
+false
+1
+"player.StartDialog(@75@);,A framed man"
+!HeardOfHouse
+
+true
+3
+[
+Depends on what it is
+!_@~~@_!
+108
+
+true
+true
+]
+[
+Yes, of course.
+!_@~~@_!
+108
+
+true
+true
+]
+[
+Previous menu
+!_@~~@_!
+8
 
 false
 true
@@ -440,90 +456,73 @@ true
 ]
 [
 12
-100
+101
 -1
 
-He looks surprised in a comical way. "Ok... interesting. Anyway, you look like a tough trustworthy guy that is willing to help others. Can I ask a favor of you?"
+That's ok. Anyway, you look like a trustworthy guy that is willing to help others. Can I ask a favor of you?
 !_@~~@_!
 
 !_@~~@_!
 false
 false
 StartQuestA_framed_man
-0
-
+5
+player
+MessageAfterQuestAccept
+false
+1
+"player.TriggerQuestEvent(@HeardOfHouse@);,A framed man"
+player
+MessageAfterQuestAccept
+false
+1
+"player.TriggerQuestEvent(@!HasNoOldErigdorQuests@);,A framed man"
+player
+MessageAfterQuestAccept
+false
+1
+"player.TriggerQuestEvent(@HasNoNewErigdorQuests@);,A framed man"
+player
+MessageAfterQuestAccept
+false
+1
+"player.StartDialog(@Erigdor@);,A framed man"
+player
+MessageAfterQuestAccept
+false
+1
+"player.StartDialog(@75@);,A framed man"
+!HeardOfHouse
 
 true
 3
 [
 Depends on what it is
 !_@~~@_!
-102
+108
 
 true
-true
-]
-[
-Of course not! I'm leaving!
-!_@~~@_!
-9
-
-false
 true
 ]
 [
 Yes, of course.
 !_@~~@_!
-102
+108
 
 true
+true
+]
+[
+Previous menu
+!_@~~@_!
+8
+
+false
 true
 ]
 ]
 [
 13
-101
--1
-
-That's ok. Anyway, you look like a tough trustworthy guy that is willing to help others. Can I ask a favor of you?
-!_@~~@_!
-
-!_@~~@_!
-false
-false
-StartQuestA_framed_man
-0
-
-
-true
-3
-[
-Depends on what it is
-!_@~~@_!
-102
-
-true
-true
-]
-[
-Yes, of course.
-!_@~~@_!
-102
-
-true
-true
-]
-[
-Of course not! I'm leaving!
-!_@~~@_!
-9
-
-false
-true
-]
-]
-[
-14
 103
 -1
 
@@ -535,21 +534,29 @@ false
 false
 
 0
-HeardOfHouse,!FinishedQuestA_framed_man
+HeardOfHouse
 
 true
-1
+2
 [
 Go to 1807 Kalo Street
 !_@~~@_!
-15
+14
+
+false
+true
+]
+[
+Previous menu
+!_@~~@_!
+-1
 
 false
 true
 ]
 ]
 [
-15
+14
 104
 15
 

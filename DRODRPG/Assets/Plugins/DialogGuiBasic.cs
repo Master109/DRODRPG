@@ -64,15 +64,15 @@ public class DialogGuiBasic : DialogGuiAbstract {
     	}
     	
     	if (HasReturnConversation()){
-  			if (GUILayout.Button("Lets talk about something else.")) {
+  			if (GUILayout.Button("Next menu")) {
   				GotoReturnConversation();
 				conversationTextStartSec=Time.time;
 	  		}
-    	}else{
-			if (GameObject.Find("Player").GetComponent<Player>().canSayBye && GUILayout.Button("Bye")) {
+    	}//else{
+			if (GameObject.Find("Player").GetComponent<Player>().canSayBye && GUILayout.Button("Resume game")) {
 				GameObject.Find("Scripts").GetComponent<Global>().timeScale2 = 1;
   				EndDialog();
 	  		}
-	  	}
+	  	//}
 	}
 }

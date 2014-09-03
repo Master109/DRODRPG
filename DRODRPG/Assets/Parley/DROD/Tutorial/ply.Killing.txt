@@ -20,7 +20,7 @@ player
 MessageAfterQuestAccept
 false
 1
-"Bye"
+"player.EndDialog();,Kill an enemy"
 QuestComplete1
 
 true

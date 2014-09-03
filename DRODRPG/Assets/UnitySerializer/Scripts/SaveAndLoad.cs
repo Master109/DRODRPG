@@ -13,7 +13,7 @@ public class SaveAndLoad : MonoBehaviour
 	void Update ()
 	{
 		if (Input.GetKeyDown (KeyCode.S)) {
-			data = LevelSerializer.SerializeLevel (false, theObject.GetComponent<UniqueIdentifier2>().Id);
+			data = LevelSerializer.SerializeLevel (false, theObject.GetComponent<UniqueIdentifier>().Id);
 		}
 		if (Input.GetKeyDown (KeyCode.L)) {
 			LevelSerializer.LoadNow (data, false, false);

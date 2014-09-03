@@ -217,7 +217,7 @@ public abstract class DialogGuiAbstract : MonoBehaviour {
 			
 		}else{
 			dialog.SetConversationIndex(index);
-			
+
 			conversation=dialog.GetConversations()[index];
 			conversation._seen=true;
 			currentOptions=null;
@@ -399,7 +399,7 @@ public abstract class DialogGuiAbstract : MonoBehaviour {
 	 */ 
 	protected string GetConversationText(){
 		if (MustShowDebugInformation() && conversation!=null){
-			return conversationText+" <#"+conversation.uniqueId+">";
+			return conversationText;//+" <#"+conversation.uniqueId+">";
 		}
 		return conversationText;
 	}

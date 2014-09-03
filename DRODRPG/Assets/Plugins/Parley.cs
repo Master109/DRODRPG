@@ -366,6 +366,16 @@ public class Parley : MonoBehaviour {
 		this.currentDialog=currentDialog;
 	}
 
+	public void SetCurrentDialog (int uniqueId)
+	{
+		for (int i = 0; i < currentDialog.GetConversations().Length; i ++)
+		{
+			Conversation c = (Conversation) currentDialog.GetConversations()[i];
+			if (c.uniqueId == uniqueId)
+				currentDialog.SetConversationIndex(i);
+		}
+	}
+
 	public Dialog GetCurrentDialog(){
 		return currentDialog;
 	}

@@ -13,7 +13,7 @@ using Serialization;
 
 [AddComponentMenu("Storage/Rooms/Examples/Player Spawn Point")]
 [RequireComponent(typeof(SphereCollider))]
-[RequireComponent(typeof(StoreInformation2))]
+[RequireComponent(typeof(StoreInformation))]
 public class PlayerSpawnPoint : MonoBehaviour
 {
 	public static PlayerSpawnPoint currentSpawnPoint;

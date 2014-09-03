@@ -70,9 +70,9 @@ Save Game Manager - You need one of these attached to a scene component in every
 
 PrefabIdentifier - stores information for an object that will be created at run time
 
-StoreInformation2 - stored information for an object that is in the scene already
+StoreInformation - stored information for an object that is in the scene already
 
-UniqueIdentifier2 - stores a reference to an object so it can be found later
+UniqueIdentifier - stores a reference to an object so it can be found later
 
 
 
@@ -103,7 +103,7 @@ ___________
 
 * Add a PrefabIdentifier to anything that will be created at runtime
 
-* Add a StoreInformation2 to anything whose values, position or existence you wish to store that is NOT marked with a PrefabIdentifier
+* Add a StoreInformation to anything whose values, position or existence you wish to store that is NOT marked with a PrefabIdentifier
 
 * If your prefabs are created within another GameObject then that GameObject MUST have one of the scripts attached
 
@@ -202,7 +202,7 @@ You can also specify that all private variables should be stored using the Seria
 
 You can also use SerializeThis to make a single private member be stored
 
-StoreInformation2 and PrefabIdentifier both have custom inspectors that let you choose which components will be saved.  By default all components are serialized.
+StoreInformation and PrefabIdentifier both have custom inspectors that let you choose which components will be saved.  By default all components are serialized.
 
 
 

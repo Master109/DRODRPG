@@ -4,7 +4,7 @@ using System.Linq;
 [DontStore]
 [AddComponentMenu("Storage/Empty Object Identifier")]
 [ExecuteInEditMode]
-public class EmptyObjectIdentifier : StoreInformation2
+public class EmptyObjectIdentifier : StoreInformation
 {
 	protected override void Awake ()
 	{
@@ -15,7 +15,7 @@ public class EmptyObjectIdentifier : StoreInformation2
 	
 	public static void FlagAll(GameObject gameObject)
 	{
-		foreach(var c in gameObject.GetComponentsInChildren<Transform>().Where(c=>!c.GetComponent<UniqueIdentifier2>()))
+		foreach(var c in gameObject.GetComponentsInChildren<Transform>().Where(c=>!c.GetComponent<UniqueIdentifier>()))
 				c.gameObject.AddComponent<EmptyObjectIdentifier>();
 	}
 	

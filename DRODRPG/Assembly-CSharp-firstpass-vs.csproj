@@ -141,12 +141,12 @@
      <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\SaveGameManager.cs" />
      <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\SerializationUnits.cs" />
      <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\Storage.cs" />
-     <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\StoreInformation2.cs" />
+     <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\StoreInformation.cs" />
      <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\StoreMaterials.cs" />
      <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\StoreMesh.cs" />
      <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\StoredReferences.cs" />
      <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\TimeSpecialist.cs" />
-     <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\UniqueIdentifier2.cs" />
+     <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\UniqueIdentifier.cs" />
      <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\UnitySerializationExtensions.cs" />
      <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\UnitySerializer.cs" />
      <Compile Include="Assets\Plugins\whydoidoit.com\Serialization\prewarm.cs" />

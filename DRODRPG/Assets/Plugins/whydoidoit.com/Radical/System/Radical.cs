@@ -603,7 +603,7 @@ public static class Radical
 
 	public static string GetId(this GameObject go)
 	{
-		var ui = go.GetComponent<UniqueIdentifier2>();
+		var ui = go.GetComponent<UniqueIdentifier>();
 		return ui == null ? go.GetFullName() : ui.Id;
 
 	}

@@ -537,7 +537,7 @@ public class SerializeGameObjectReference : SerializerExtensionBase<GameObject>
 		{
 			return new object[] { 0, true, null, assetId  };
 		}
-		return new object[] { target.GetId (), UniqueIdentifier2.GetByName (target.gameObject.GetId ()) != null /* Identify a prefab */ };
+		return new object[] { target.GetId (), UniqueIdentifier.GetByName (target.gameObject.GetId ()) != null /* Identify a prefab */ };
 	}
 	
 	public override object Load (object[] data, object instance)
@@ -557,7 +557,7 @@ public class SerializeGameObjectReference : SerializerExtensionBase<GameObject>
 			return asset;
 		}
 		return instance ?? new UnitySerializer.DeferredSetter ((d) => {
-			return UniqueIdentifier2.GetByName ((string)data [0]) ;
+			return UniqueIdentifier.GetByName ((string)data [0]) ;
 		}) { enabled = (bool)data [1]};
 	}
 	
@@ -853,7 +853,7 @@ public class SerializeComponentReference: SerializerExtensionBase<Component>
 	
 		var index = target.gameObject.GetComponents(target.GetType()).FindIndex(c=>c==target);
 		
-		if(UniqueIdentifier2.GetByName (target.gameObject.GetId ()) != null)
+		if(UniqueIdentifier.GetByName (target.gameObject.GetId ()) != null)
 		{
 			return new object[] { target.gameObject.GetId (), true,target.GetType().FullName,"", index /* Identify a prefab */ };
 		}
@@ -879,7 +879,7 @@ public class SerializeComponentReference: SerializerExtensionBase<Component>
 		if(data.Length == 5)
 		{
 			return new UnitySerializer.DeferredSetter ((d) => {
-				var item = UniqueIdentifier2.GetByName ((string)data [0]);
+				var item = UniqueIdentifier.GetByName ((string)data [0]);
 				if(item == null)
 				{
 					Debug.LogError("Could not find reference to " + data[0] + " a " + (string)data[2]);
@@ -894,7 +894,7 @@ public class SerializeComponentReference: SerializerExtensionBase<Component>
 			} ) { enabled = (bool)data [1]};
 		}
 		return new UnitySerializer.DeferredSetter ((d) => {
-			var item = UniqueIdentifier2.GetByName ((string)data [0]);
+			var item = UniqueIdentifier.GetByName ((string)data [0]);
 			return item != null ? item.GetComponent (UnitySerializer.GetTypeEx (data [2])) : null;
 		} ) { enabled = (bool)data [1]};
 	}

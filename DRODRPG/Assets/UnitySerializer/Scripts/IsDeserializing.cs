@@ -8,12 +8,12 @@ public class IsDeserializing : MonoBehaviour {
 	
 	void Awake()
 	{
-//		Debug.Log(GetComponent<UniqueIdentifier2>().IsDeserializing.ToString());
+//		Debug.Log(GetComponent<UniqueIdentifier>().IsDeserializing.ToString());
 	}
 	
 	// Use this for initialization
 	void Start () {
-//		Debug.Log("Start " + GetComponent<UniqueIdentifier2>().IsDeserializing.ToString());
+//		Debug.Log("Start " + GetComponent<UniqueIdentifier>().IsDeserializing.ToString());
 	
 	}
 	

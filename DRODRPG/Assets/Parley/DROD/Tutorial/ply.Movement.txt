@@ -20,7 +20,7 @@ player
 MessageAfterQuestAccept
 false
 1
-"Bye"
+"player.EndDialog();,Move your body"
 player
 CreateQuestPoint
 false

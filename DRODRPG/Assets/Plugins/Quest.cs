@@ -166,14 +166,18 @@ public class Quest {
 		}
 		FireQuestHasChanged();
 		Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
-		if (player.messageAfterQuestAccept != "")
+		for (int i = 0; i < player.messagesAfterQuestAccept.Count; i ++)
 		{
-			if (player.messageAfterQuestAccept == "Bye")
+			string str = (string) player.messagesAfterQuestAccept[i];
+			int indexOfComma = str.IndexOf(",");
+			string questName = str.Substring(indexOfComma + 1, str.Length - indexOfComma - 1);
+			if (questName == "ALL" || name == questName)
 			{
-				Parley.GetInstance().GetCurrentDialog().TriggerDialogEnd();
-				GameObject.Find("Scripts").GetComponent<Global>().timeScale2 = 1;
+				str = str.Replace("@", "\"");
+				string questNameAndComma = str.Substring(indexOfComma, str.Length - indexOfComma);
+				player.SendMessage("Eval", str.Replace(questNameAndComma, ""));
+				//player.messagesAfterQuestAccept.RemoveAt(i);
 			}
-			player.messageAfterQuestAccept = "";
 		}
 	}
 	

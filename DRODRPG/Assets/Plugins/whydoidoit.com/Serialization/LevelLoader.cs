@@ -89,7 +89,7 @@ public class LevelLoader : MonoBehaviour
         go.active = activate;
         foreach (var c in go.transform.Cast<Transform>())
         {
-            if (c.GetComponent<StoreInformation2>() == null)
+            if (c.GetComponent<StoreInformation>() == null)
             {
                 SetActive(c.gameObject, activate);
             }
@@ -128,7 +128,7 @@ public class LevelLoader : MonoBehaviour
         {
             //First step is to remove any items that should not exist according to the saved scene
             foreach (var go in
-                UniqueIdentifier2.AllIdentifiers.Where(n => Data.StoredObjectNames.All(sn => sn.Name != n.Id)).ToList())
+                UniqueIdentifier.AllIdentifiers.Where(n => Data.StoredObjectNames.All(sn => sn.Name != n.Id)).ToList())
             {
                 try
                 {
@@ -146,15 +146,15 @@ public class LevelLoader : MonoBehaviour
             }
         }
 		
-		var flaggedObjects = new List<UniqueIdentifier2>();
-		flaggedObjects.AddRange(Data.StoredObjectNames.Select(c=>UniqueIdentifier2.GetByName(c.Name)).Where(c=>c!=null).Select(c=>c.GetComponent<UniqueIdentifier2>()));
+		var flaggedObjects = new List<UniqueIdentifier>();
+		flaggedObjects.AddRange(Data.StoredObjectNames.Select(c=>UniqueIdentifier.GetByName(c.Name)).Where(c=>c!=null).Select(c=>c.GetComponent<UniqueIdentifier>()));
 		
         LevelSerializer.RaiseProgress("Initializing", 0.25f);
 
         var position = new Vector3(0, 2000, 2000);
         //Next we need to instantiate any items that are needed by the stored scene
         foreach (var sto in
-            Data.StoredObjectNames.Where(c => UniqueIdentifier2.GetByName(c.Name) == null))
+            Data.StoredObjectNames.Where(c => UniqueIdentifier.GetByName(c.Name) == null))
         {
             try
             {
@@ -182,24 +182,24 @@ public class LevelLoader : MonoBehaviour
                         Debug.LogWarning("Cancelled");
                         continue;
                     }
-                    var uis = pf.GetComponentsInChildren<UniqueIdentifier2>();
+                    var uis = pf.GetComponentsInChildren<UniqueIdentifier>();
 					foreach(var ui in uis)
 						ui.IsDeserializing = true;
 					sto.GameObject = Instantiate(pf, position, Quaternion.identity) as GameObject;
-                    sto.GameObject.GetComponent<UniqueIdentifier2>().Id = sto.Name;
-                    if (sto.GameObject.GetComponent<UniqueIdentifier2>().Id == Data.rootObject)
+                    sto.GameObject.GetComponent<UniqueIdentifier>().Id = sto.Name;
+                    if (sto.GameObject.GetComponent<UniqueIdentifier>().Id == Data.rootObject)
                         Debug.Log("Set the root object on a prefab");
 					foreach(var ui in uis)
 						ui.IsDeserializing = false;
-					flaggedObjects.AddRange(sto.GameObject.GetComponentsInChildren<UniqueIdentifier2>());
+					flaggedObjects.AddRange(sto.GameObject.GetComponentsInChildren<UniqueIdentifier>());
                 }
 				
                 position += Vector3.right*50;
-                sto.GameObject.GetComponent<UniqueIdentifier2>().Id = sto.Name;
+                sto.GameObject.GetComponent<UniqueIdentifier>().Id = sto.Name;
                 sto.GameObject.name = sto.GameObjectName;
                 if (sto.ChildIds.Count > 0)
                 {
-                    var list = sto.GameObject.GetComponentsInChildren<UniqueIdentifier2>().ToList();
+                    var list = sto.GameObject.GetComponentsInChildren<UniqueIdentifier>().ToList();
                     for (var i = 0; i < list.Count && i < sto.ChildIds.Count; i++)
                     {
                         list[i].Id = sto.ChildIds[i];
@@ -237,7 +237,7 @@ public class LevelLoader : MonoBehaviour
 
         foreach (var so in Data.StoredObjectNames)
         {
-            var go = UniqueIdentifier2.GetByName(so.Name);
+            var go = UniqueIdentifier.GetByName(so.Name);
             if (go == null)
             {
                 Radical.LogNow("Could not find " + so.GameObjectName + " " + so.Name);
@@ -247,7 +247,7 @@ public class LevelLoader : MonoBehaviour
                 loadedGameObjects.Add(go);
                 if (so.Components != null && so.Components.Count > 0)
                 {
-                    //var all = go.GetComponents<Component>().Where(c=>!typeof(UniqueIdentifier2).IsAssignableFrom(c.GetType())).ToList();
+                    //var all = go.GetComponents<Component>().Where(c=>!typeof(UniqueIdentifier).IsAssignableFrom(c.GetType())).ToList();
                     //foreach (var comp in all)
                     //{
                     //    if (!so.Components.ContainsKey(comp.GetType().FullName))
@@ -269,14 +269,14 @@ public class LevelLoader : MonoBehaviour
 		
 		if(rootObject != null)
 		{
-			if(UniqueIdentifier2.GetByName(Data.rootObject)==null)
+			if(UniqueIdentifier.GetByName(Data.rootObject)==null)
 				Debug.Log("No root object has been configured");
 		}
 
         foreach (var go in Data.StoredObjectNames.Where(c => !string.IsNullOrEmpty(c.ParentName)))
         {
-            var parent = UniqueIdentifier2.GetByName(go.ParentName);
-            var item = UniqueIdentifier2.GetByName(go.Name);
+            var parent = UniqueIdentifier.GetByName(go.ParentName);
+            var item = UniqueIdentifier.GetByName(go.Name);
             if (item != null && parent != null)
             {
                 item.transform.parent = parent.transform;
@@ -325,7 +325,7 @@ public class LevelLoader : MonoBehaviour
 							Radical.Log ("\n*****************\n{0}\n********START**********\n", item.Name);
 							Radical.IndentLog ();
 		#endif
-		                    var go = UniqueIdentifier2.GetByName(item.Name);
+		                    var go = UniqueIdentifier.GetByName(item.Name);
 		                    if (go == null)
 		                    {
 		                        Radical.LogWarning(item.Name + " was null");
@@ -375,7 +375,7 @@ public class LevelLoader : MonoBehaviour
 		                                                         var tname = item1.Name;
 		                                                         UnitySerializer.AddFinalAction(() =>
 		                                                                                            {
-		                                                                                                var g = UniqueIdentifier2.GetByName(tname);
+		                                                                                                var g = UniqueIdentifier.GetByName(tname);
 		                                                                                                var nlist = g.GetComponents(tp).Where(c => c.GetType() == tp).ToList();
 		                                                                                                while (nlist.Count < comp.List.Count)
 		                                                                                                {
@@ -490,7 +490,7 @@ public class LevelLoader : MonoBehaviour
             //LevelSerializer.InvokeDeserialized();
             if (Data.rootObject != null)
             {
-                rootObject = UniqueIdentifier2.GetByName(Data.rootObject);
+                rootObject = UniqueIdentifier.GetByName(Data.rootObject);
             }
             else
             {

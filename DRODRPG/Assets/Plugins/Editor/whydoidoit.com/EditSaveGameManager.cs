@@ -28,7 +28,7 @@ public class EditSaveGameManager : Editor
 						{
 							EditorGUIUtility.PingObject(g);
 						}
-						GUILayout.Label(g.GetComponent<UniqueIdentifier2>().Id + " > " + g.GetInstanceID());
+						GUILayout.Label(g.GetComponent<UniqueIdentifier>().Id + " > " + g.GetInstanceID());
 					}
 				}
 			}

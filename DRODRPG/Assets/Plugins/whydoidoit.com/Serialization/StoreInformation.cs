@@ -6,7 +6,7 @@ using System.Linq;
 [DontStore]
 [ExecuteInEditMode]
 [AddComponentMenu("Storage/Store Information")]
-public class StoreInformation2 : UniqueIdentifier2
+public class StoreInformation : UniqueIdentifier
 {
 	public bool StoreAllComponents = true;
 	[HideInInspector]
@@ -15,8 +15,8 @@ public class StoreInformation2 : UniqueIdentifier2
 	protected override void Awake()
 	{
 		base.Awake();
-		foreach(var c in GetComponents<UniqueIdentifier2>().Where(t=>t.GetType() == typeof(UniqueIdentifier2) || 
-			(t.GetType() == typeof(StoreInformation2) && t != this)))
+		foreach(var c in GetComponents<UniqueIdentifier>().Where(t=>t.GetType() == typeof(UniqueIdentifier) || 
+			(t.GetType() == typeof(StoreInformation) && t != this)))
 			DestroyImmediate(c);
 	}
 	

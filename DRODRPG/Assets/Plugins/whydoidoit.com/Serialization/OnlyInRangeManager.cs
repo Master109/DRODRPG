@@ -173,7 +173,7 @@ public class OnlyInRangeManager : MonoBehaviour
 	{
 		LevelSerializer.DontCollect();
 		//Save the data
-		var data = LevelSerializer.SerializeLevel(false, item.transform.GetComponent<UniqueIdentifier2>().Id);
+		var data = LevelSerializer.SerializeLevel(false, item.transform.GetComponent<UniqueIdentifier>().Id);
 		yield return new WaitForEndOfFrame();
 		LevelSerializer.Collect();
 		//Write it to a file

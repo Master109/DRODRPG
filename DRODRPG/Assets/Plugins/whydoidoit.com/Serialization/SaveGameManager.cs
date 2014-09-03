@@ -207,7 +207,7 @@ public class SaveGameManager : MonoBehaviour
 	{
 		foreach(var child in items)
 		{
-			if(child.GetComponent<UniqueIdentifier2>()!=null)
+			if(child.GetComponent<UniqueIdentifier>()!=null)
 			{
 				if(!child.gameObject.active)
 				{

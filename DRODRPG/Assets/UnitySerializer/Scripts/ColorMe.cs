@@ -8,7 +8,7 @@ public class ColorMe : MonoBehaviourEx {
 
 		// Use this for initialization
 	void Start () {
-		if(!GetComponent<UniqueIdentifier2>().IsDeserializing)
+		if(!GetComponent<UniqueIdentifier>().IsDeserializing)
 		{
 			StartCoroutine("DoColorMe");
 		}
