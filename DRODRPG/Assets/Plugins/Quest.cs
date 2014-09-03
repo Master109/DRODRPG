@@ -176,7 +176,7 @@ public class Quest {
 				str = str.Replace("@", "\"");
 				string questNameAndComma = str.Substring(indexOfComma, str.Length - indexOfComma);
 				player.SendMessage("Eval", str.Replace(questNameAndComma, ""));
-				//player.messagesAfterQuestAccept.RemoveAt(i);
+				player.messagesAfterQuestAccept.RemoveAt(i);
 			}
 		}
 	}
